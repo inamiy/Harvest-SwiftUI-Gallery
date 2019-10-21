@@ -18,12 +18,14 @@ struct RootView: View
                     NavigationLink(
                         destination: example.exampleView(store: self.store)
                             .navigationBarTitle("\(example.exampleTitle)", displayMode: .inline),
-                        isActive: self.store.$state.current.transform(
-                            get: { $0?.example.exampleTitle == example.exampleTitle },
-                            set: { _, isPresenting in
-                                isPresenting ? example.exampleInitialState : nil
-                            }
-                        )
+                        isActive: self.store.current
+                            .stateBinding(onChange: Root.Input.changeCurrent)
+                            .transform(
+                                get: { $0?.example.exampleTitle == example.exampleTitle },
+                                set: { _, isPresenting in
+                                    isPresenting ? example.exampleInitialState : nil
+                                }
+                            )
                     ) {
                         HStack(alignment: .firstTextBaseline) {
                             example.exampleIcon

@@ -9,7 +9,8 @@ extension Root
 {
     enum Input
     {
-        case navigation(Example)
+        case changeCurrent(State.Current?)
+
         case counter(Counter.Input)
         case stopwatch(Stopwatch.Input)
         case stateDiagram(StateDiagram.Input)
@@ -33,92 +34,6 @@ extension Root
             }
         }
 
-        /// Current example state as sum type where each state is not shared.
-        enum Current
-        {
-            case intro
-            case counter(Counter.State)
-            case stopwatch(Stopwatch.State)
-            case stateDiagram(StateDiagram.State)
-            case todo(Todo.State)
-            case github(GitHub.State)
-
-            var example: Example
-            {
-                switch self {
-                case .intro:        return IntroExample()
-                case .counter:      return CounterExample()
-                case .stopwatch:    return StopwatchExample()
-                case .stateDiagram: return StateDiagramExample()
-                case .todo:         return TodoExample()
-                case .github:       return GitHubExample()
-                }
-            }
-
-            // MARK: - get-set enum properties (for SwiftUI binding)
-            // See also: https://www.pointfree.co/episodes/ep70-composable-state-management-action-pullbacks
-
-            var counter: Counter.State?
-            {
-                get {
-                    guard case let .counter(value) = self else { return nil }
-                    return value
-                }
-                set {
-                    guard case .counter = self, let newValue = newValue else { return }
-                    self = .counter(newValue)
-                }
-            }
-
-            var stopwatch: Stopwatch.State?
-            {
-                get {
-                    guard case let .stopwatch(value) = self else { return nil }
-                    return value
-                }
-                set {
-                    guard case .stopwatch = self, let newValue = newValue else { return }
-                    self = .stopwatch(newValue)
-                }
-            }
-
-            var stateDiagram: StateDiagram.State?
-            {
-                get {
-                    guard case let .stateDiagram(value) = self else { return nil }
-                    return value
-                }
-                set {
-                    guard case .stateDiagram = self, let newValue = newValue else { return }
-                    self = .stateDiagram(newValue)
-                }
-            }
-
-            var todo: Todo.State?
-            {
-                get {
-                    guard case let .todo(value) = self else { return nil }
-                    return value
-                }
-                set {
-                    guard case .todo = self, let newValue = newValue else { return }
-                    self = .todo(newValue)
-                }
-            }
-
-            var github: GitHub.State?
-            {
-                get {
-                    guard case let .github(value) = self else { return nil }
-                    return value
-                }
-                set {
-                    guard case .github = self, let newValue = newValue else { return }
-                    self = .github(newValue)
-                }
-            }
-        }
-
         struct Shared
         {
             // To be done someday :)
@@ -130,6 +45,27 @@ extension Root
     ) -> EffectMapping
     {
         return .reduce([
+            .makeInout { input, state in
+                switch input {
+                case let .changeCurrent(current):
+                    state.current = current
+
+                    // When navigating to example, cancel its previous running effects.
+                    //
+                    // NOTE:
+                    // We should NOT cancel previous effects at example screen's
+                    // `onAppear`, `onDisappear`, `init`, `deinit`, etc,
+                    // because we sometimes want to keep them running
+                    // (e.g. Stopwatch temporarily visiting child screen),
+                    // so `.changeCurrent` is the best timing to cancel them.
+                    let currentEffectIDs = current?.allEffectIDs
+                    return currentEffectIDs.map { .cancel($0) } ?? .empty
+
+                default:
+                    return nil
+                }
+            },
+
             Counter.mapping.toEffectMapping()
                 .transform(input: .init(prism: .counter))
                 .transform(state: .counter),

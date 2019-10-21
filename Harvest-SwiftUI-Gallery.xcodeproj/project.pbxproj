@@ -11,6 +11,7 @@
 		1F2F06102356E5F400211CF3 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2F060F2356E5F400211CF3 /* WebView.swift */; };
 		1F3CFDAF235B89250088C968 /* IfLetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3CFDAE235B89250088C968 /* IfLetView.swift */; };
 		1F3CFDB1235B968E0088C968 /* IfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3CFDB0235B968E0088C968 /* IfView.swift */; };
+		1F4DAA29235E6DC7003EAFE1 /* Root.State.Current.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4DAA28235E6DC7003EAFE1 /* Root.State.Current.swift */; };
 		1F58869F2354A3310052A690 /* TodoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F58869C2354A3310052A690 /* TodoView.swift */; };
 		1F5886A02354A3310052A690 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F58869D2354A3310052A690 /* Todo.swift */; };
 		1F5886A12354A3310052A690 /* TodoExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F58869E2354A3310052A690 /* TodoExample.swift */; };
@@ -68,6 +69,7 @@
 		1F2F060F2356E5F400211CF3 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		1F3CFDAE235B89250088C968 /* IfLetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IfLetView.swift; sourceTree = "<group>"; };
 		1F3CFDB0235B968E0088C968 /* IfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IfView.swift; sourceTree = "<group>"; };
+		1F4DAA28235E6DC7003EAFE1 /* Root.State.Current.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Root.State.Current.swift; sourceTree = "<group>"; };
 		1F58869C2354A3310052A690 /* TodoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoView.swift; sourceTree = "<group>"; };
 		1F58869D2354A3310052A690 /* Todo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
 		1F58869E2354A3310052A690 /* TodoExample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoExample.swift; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 			children = (
 				1FC021772352740900C117F9 /* AppView.swift */,
 				1FD96FD222E0397E005DBB61 /* Root.swift */,
+				1F4DAA28235E6DC7003EAFE1 /* Root.State.Current.swift */,
 				1FD7A6BE22E379E3005130FB /* RootView.swift */,
 				1FA2BD79235649330015C530 /* Common */,
 				1FD7A6C222E38342005130FB /* Intro */,
@@ -358,6 +361,7 @@
 				1FC021B22352C55800C117F9 /* StateDiagramExample.swift in Sources */,
 				1FD96FD622E0397E005DBB61 /* StateDiagram.swift in Sources */,
 				1FA2BD7B2356496F0015C530 /* ActivityIndicatorView.swift in Sources */,
+				1F4DAA29235E6DC7003EAFE1 /* Root.State.Current.swift in Sources */,
 				1FD96F8B22E00A56005DBB61 /* AppDelegate.swift in Sources */,
 				1FD96F8D22E00A56005DBB61 /* SceneDelegate.swift in Sources */,
 				1F58869F2354A3310052A690 /* TodoView.swift in Sources */,
