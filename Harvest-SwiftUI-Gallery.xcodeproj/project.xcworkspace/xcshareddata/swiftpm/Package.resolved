@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "FunOptics",
+        "repositoryURL": "https://github.com/inamiy/FunOptics",
+        "state": {
+          "branch": null,
+          "revision": "d11d509d998f629a09ab1b627e31000a20c9c308",
+          "version": "1.0.1"
+        }
+      },
+      {
+        "package": "Harvest",
+        "repositoryURL": "https://github.com/inamiy/Harvest",
+        "state": {
+          "branch": "master",
+          "revision": "a027cc5bf6e48c55192c4cebf97631b1d2071b10",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
