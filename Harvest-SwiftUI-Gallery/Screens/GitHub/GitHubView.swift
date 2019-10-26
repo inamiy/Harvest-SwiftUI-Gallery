@@ -10,9 +10,11 @@ struct GitHubView: View
         self.store = store
     }
 
+    #if canImport(UIKit)
+
     var body: some View
     {
-        VStack {
+        return VStack {
             searchBar()
 
             Divider()
@@ -117,6 +119,15 @@ struct GitHubView: View
         }
         .padding(.vertical, 10)
     }
+
+    #else
+
+    var body: some View
+    {
+        Text("Not ready")
+    }
+
+    #endif
 }
 
 struct GitHubView_Previews: PreviewProvider

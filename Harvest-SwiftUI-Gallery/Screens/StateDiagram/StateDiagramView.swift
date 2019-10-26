@@ -15,7 +15,7 @@ struct StateDiagramView: View
         VStack(spacing: 20) {
             GeometryReader { geometry in
                 ZStack(alignment: .bottomLeading) {
-                    Image("login-diagram")
+                    SwiftUI.Image("login-diagram")
                         .resizable()
 
                     Rectangle()

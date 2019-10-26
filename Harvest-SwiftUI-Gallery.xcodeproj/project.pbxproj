@@ -19,6 +19,52 @@
 		1F63A0A6235B68EC006B4F83 /* SwiftUI+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F63A0A5235B68EC006B4F83 /* SwiftUI+Helper.swift */; };
 		1F63A0B0235B7D7F006B4F83 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F63A0AF235B7D7F006B4F83 /* Functions.swift */; };
 		1F70A1A62358D2E80028624C /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F70A1A52358D2E80028624C /* ImageLoader.swift */; };
+		1F715BF52364661F000F854E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F715BF42364661F000F854E /* AppDelegate.swift */; };
+		1F715BF923646620000F854E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F715BF823646620000F854E /* Assets.xcassets */; };
+		1F715BFC23646620000F854E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F715BFB23646620000F854E /* Preview Assets.xcassets */; };
+		1F715BFF23646620000F854E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F715BFD23646620000F854E /* Main.storyboard */; };
+		1F715C05236466ED000F854E /* Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC0218B2352AEAE00C117F9 /* Example.swift */; };
+		1F715C06236466ED000F854E /* CommonEffectQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE19DB5234AB7E500C7B991 /* CommonEffectQueue.swift */; };
+		1F715C07236466ED000F854E /* Optics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE19DB3234A9F5A00C7B991 /* Optics.swift */; };
+		1F715C08236466F1000F854E /* Either.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F199767235AC81300B4F99C /* Either.swift */; };
+		1F715C09236466F1000F854E /* Combine+DelaySubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F63A0A3235B67C8006B4F83 /* Combine+DelaySubscription.swift */; };
+		1F715C0A236466F1000F854E /* SwiftUI+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F63A0A5235B68EC006B4F83 /* SwiftUI+Helper.swift */; };
+		1F715C0B236466F1000F854E /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F70A1A52358D2E80028624C /* ImageLoader.swift */; };
+		1F715C0C236466F1000F854E /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F91AB8A235CBD310054CE37 /* DateUtil.swift */; };
+		1F715C0D236466F1000F854E /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F63A0AF235B7D7F006B4F83 /* Functions.swift */; };
+		1F715C0E236466F4000F854E /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC021772352740900C117F9 /* AppView.swift */; };
+		1F715C0F236466F4000F854E /* Root.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD96FD222E0397E005DBB61 /* Root.swift */; };
+		1F715C10236466F4000F854E /* Root.State.Current.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4DAA28235E6DC7003EAFE1 /* Root.State.Current.swift */; };
+		1F715C11236466F4000F854E /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD7A6BE22E379E3005130FB /* RootView.swift */; };
+		1F715C12236466FC000F854E /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA2BD7A2356496F0015C530 /* ActivityIndicatorView.swift */; };
+		1F715C13236466FC000F854E /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2F060F2356E5F400211CF3 /* WebView.swift */; };
+		1F715C14236466FC000F854E /* IfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3CFDB0235B968E0088C968 /* IfView.swift */; };
+		1F715C15236466FC000F854E /* IfLetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3CFDAE235B89250088C968 /* IfLetView.swift */; };
+		1F715C16236466FC000F854E /* IntroExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC021AD2352C4C600C117F9 /* IntroExample.swift */; };
+		1F715C17236466FC000F854E /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD7A6C422E38342005130FB /* IntroView.swift */; };
+		1F715C18236466FC000F854E /* CounterExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC021AF2352C52000C117F9 /* CounterExample.swift */; };
+		1F715C19236466FC000F854E /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC0218623529DEE00C117F9 /* Counter.swift */; };
+		1F715C1A236466FC000F854E /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC0218523529DEE00C117F9 /* CounterView.swift */; };
+		1F715C1B236466FC000F854E /* TodoExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F58869E2354A3310052A690 /* TodoExample.swift */; };
+		1F715C1C236466FC000F854E /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F58869D2354A3310052A690 /* Todo.swift */; };
+		1F715C1D236466FC000F854E /* TodoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F58869C2354A3310052A690 /* TodoView.swift */; };
+		1F715C1E23646700000F854E /* StateDiagramExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC021B12352C55800C117F9 /* StateDiagramExample.swift */; };
+		1F715C1F23646700000F854E /* StateDiagram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD96FD422E0397E005DBB61 /* StateDiagram.swift */; };
+		1F715C2023646700000F854E /* StateDiagramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD7A6C022E380EF005130FB /* StateDiagramView.swift */; };
+		1F715C2123646700000F854E /* StopwatchExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F91AB84235CB25D0054CE37 /* StopwatchExample.swift */; };
+		1F715C2223646700000F854E /* Stopwatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F91AB86235CB25D0054CE37 /* Stopwatch.swift */; };
+		1F715C2323646700000F854E /* StopwatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F91AB85235CB25D0054CE37 /* StopwatchView.swift */; };
+		1F715C2823646730000F854E /* Harvest in Frameworks */ = {isa = PBXBuildFile; productRef = 1F715C2723646730000F854E /* Harvest */; };
+		1F715C2A23646730000F854E /* HarvestOptics in Frameworks */ = {isa = PBXBuildFile; productRef = 1F715C2923646730000F854E /* HarvestOptics */; };
+		1F715C2C23646730000F854E /* HarvestStore in Frameworks */ = {isa = PBXBuildFile; productRef = 1F715C2B23646730000F854E /* HarvestStore */; };
+		1F715C2E236467BC000F854E /* Image+macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F715C2D236467BC000F854E /* Image+macOS.swift */; };
+		1F715C2F2364680A000F854E /* Image+macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F715C2D236467BC000F854E /* Image+macOS.swift */; };
+		1F715C3123646840000F854E /* AppKitSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F715C3023646840000F854E /* AppKitSupport.swift */; };
+		1F715C3223646840000F854E /* AppKitSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F715C3023646840000F854E /* AppKitSupport.swift */; };
+		1F715C34236469D9000F854E /* GitHubExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA2BD73235633F90015C530 /* GitHubExample.swift */; };
+		1F715C35236469D9000F854E /* GitHub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA2BD75235633F90015C530 /* GitHub.swift */; };
+		1F715C36236469D9000F854E /* GitHubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA2BD74235633F90015C530 /* GitHubView.swift */; };
+		1F715C3723646BB0000F854E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FD96F9022E00A58005DBB61 /* Assets.xcassets */; };
 		1F91AB87235CB25D0054CE37 /* StopwatchExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F91AB84235CB25D0054CE37 /* StopwatchExample.swift */; };
 		1F91AB88235CB25D0054CE37 /* StopwatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F91AB85235CB25D0054CE37 /* StopwatchView.swift */; };
 		1F91AB89235CB25D0054CE37 /* Stopwatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F91AB86235CB25D0054CE37 /* Stopwatch.swift */; };
@@ -77,6 +123,15 @@
 		1F63A0A5235B68EC006B4F83 /* SwiftUI+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwiftUI+Helper.swift"; sourceTree = "<group>"; };
 		1F63A0AF235B7D7F006B4F83 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		1F70A1A52358D2E80028624C /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		1F715BF22364661F000F854E /* Harvest-SwiftUI-Gallery-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Harvest-SwiftUI-Gallery-macOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F715BF42364661F000F854E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1F715BF823646620000F854E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1F715BFB23646620000F854E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1F715BFE23646620000F854E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1F715C0023646620000F854E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1F715C0123646620000F854E /* Harvest-SwiftUI-Gallery-macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Harvest-SwiftUI-Gallery-macOS.entitlements; sourceTree = "<group>"; };
+		1F715C2D236467BC000F854E /* Image+macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+macOS.swift"; sourceTree = "<group>"; };
+		1F715C3023646840000F854E /* AppKitSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppKitSupport.swift; sourceTree = "<group>"; };
 		1F91AB84235CB25D0054CE37 /* StopwatchExample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopwatchExample.swift; sourceTree = "<group>"; };
 		1F91AB85235CB25D0054CE37 /* StopwatchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopwatchView.swift; sourceTree = "<group>"; };
 		1F91AB86235CB25D0054CE37 /* Stopwatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stopwatch.swift; sourceTree = "<group>"; };
@@ -109,6 +164,16 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		1F715BEF2364661F000F854E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F715C2A23646730000F854E /* HarvestOptics in Frameworks */,
+				1F715C2C23646730000F854E /* HarvestStore in Frameworks */,
+				1F715C2823646730000F854E /* Harvest in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1FD96F8422E00A56005DBB61 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -131,6 +196,8 @@
 				1F70A1A52358D2E80028624C /* ImageLoader.swift */,
 				1F91AB8A235CBD310054CE37 /* DateUtil.swift */,
 				1F63A0AF235B7D7F006B4F83 /* Functions.swift */,
+				1F715C2D236467BC000F854E /* Image+macOS.swift */,
+				1F715C3023646840000F854E /* AppKitSupport.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -143,6 +210,27 @@
 				1F58869C2354A3310052A690 /* TodoView.swift */,
 			);
 			path = Todo;
+			sourceTree = "<group>";
+		};
+		1F715BF32364661F000F854E /* Harvest-SwiftUI-Gallery-macOS */ = {
+			isa = PBXGroup;
+			children = (
+				1F715BF42364661F000F854E /* AppDelegate.swift */,
+				1F715BF823646620000F854E /* Assets.xcassets */,
+				1F715BFD23646620000F854E /* Main.storyboard */,
+				1F715C0023646620000F854E /* Info.plist */,
+				1F715C0123646620000F854E /* Harvest-SwiftUI-Gallery-macOS.entitlements */,
+				1F715BFA23646620000F854E /* Preview Content */,
+			);
+			path = Harvest-SwiftUI-Gallery-macOS;
+			sourceTree = "<group>";
+		};
+		1F715BFA23646620000F854E /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				1F715BFB23646620000F854E /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		1F91AB83235CB25D0054CE37 /* Stopwatch */ = {
@@ -199,6 +287,7 @@
 			isa = PBXGroup;
 			children = (
 				1FD96F8922E00A56005DBB61 /* Harvest-SwiftUI-Gallery */,
+				1F715BF32364661F000F854E /* Harvest-SwiftUI-Gallery-macOS */,
 				1FD96F8822E00A56005DBB61 /* Products */,
 				1FD96FA322E00AF2005DBB61 /* Frameworks */,
 			);
@@ -208,6 +297,7 @@
 			isa = PBXGroup;
 			children = (
 				1FD96F8722E00A56005DBB61 /* Harvest-SwiftUI-Gallery.app */,
+				1F715BF22364661F000F854E /* Harvest-SwiftUI-Gallery-macOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -276,6 +366,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		1F715BF12364661F000F854E /* Harvest-SwiftUI-Gallery-macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1F715C0423646620000F854E /* Build configuration list for PBXNativeTarget "Harvest-SwiftUI-Gallery-macOS" */;
+			buildPhases = (
+				1F715BEE2364661F000F854E /* Sources */,
+				1F715BEF2364661F000F854E /* Frameworks */,
+				1F715BF02364661F000F854E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Harvest-SwiftUI-Gallery-macOS;
+			packageProductDependencies = (
+				1F715C2723646730000F854E /* Harvest */,
+				1F715C2923646730000F854E /* HarvestOptics */,
+				1F715C2B23646730000F854E /* HarvestStore */,
+			);
+			productName = Harvest-SwiftUI-Gallery-macOS;
+			productReference = 1F715BF22364661F000F854E /* Harvest-SwiftUI-Gallery-macOS.app */;
+			productType = "com.apple.product-type.application";
+		};
 		1FD96F8622E00A56005DBB61 /* Harvest-SwiftUI-Gallery */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1FD96F9B22E00A58005DBB61 /* Build configuration list for PBXNativeTarget "Harvest-SwiftUI-Gallery" */;
@@ -306,10 +418,13 @@
 		1FD96F7F22E00A56005DBB61 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1100;
+				LastSwiftUpdateCheck = 1110;
 				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = "Yasuhiro Inami";
 				TargetAttributes = {
+					1F715BF12364661F000F854E = {
+						CreatedOnToolsVersion = 11.1;
+					};
 					1FD96F8622E00A56005DBB61 = {
 						CreatedOnToolsVersion = 11.0;
 					};
@@ -332,11 +447,23 @@
 			projectRoot = "";
 			targets = (
 				1FD96F8622E00A56005DBB61 /* Harvest-SwiftUI-Gallery */,
+				1F715BF12364661F000F854E /* Harvest-SwiftUI-Gallery-macOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		1F715BF02364661F000F854E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F715BFF23646620000F854E /* Main.storyboard in Resources */,
+				1F715BFC23646620000F854E /* Preview Assets.xcassets in Resources */,
+				1F715C3723646BB0000F854E /* Assets.xcassets in Resources */,
+				1F715BF923646620000F854E /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1FD96F8522E00A56005DBB61 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -350,6 +477,50 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		1F715BEE2364661F000F854E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F715C3223646840000F854E /* AppKitSupport.swift in Sources */,
+				1F715C09236466F1000F854E /* Combine+DelaySubscription.swift in Sources */,
+				1F715C1E23646700000F854E /* StateDiagramExample.swift in Sources */,
+				1F715C13236466FC000F854E /* WebView.swift in Sources */,
+				1F715C1D236466FC000F854E /* TodoView.swift in Sources */,
+				1F715C19236466FC000F854E /* Counter.swift in Sources */,
+				1F715C35236469D9000F854E /* GitHub.swift in Sources */,
+				1F715C05236466ED000F854E /* Example.swift in Sources */,
+				1F715C2323646700000F854E /* StopwatchView.swift in Sources */,
+				1F715C14236466FC000F854E /* IfView.swift in Sources */,
+				1F715C2F2364680A000F854E /* Image+macOS.swift in Sources */,
+				1F715C2023646700000F854E /* StateDiagramView.swift in Sources */,
+				1F715C1F23646700000F854E /* StateDiagram.swift in Sources */,
+				1F715C07236466ED000F854E /* Optics.swift in Sources */,
+				1F715C1B236466FC000F854E /* TodoExample.swift in Sources */,
+				1F715C1A236466FC000F854E /* CounterView.swift in Sources */,
+				1F715C2123646700000F854E /* StopwatchExample.swift in Sources */,
+				1F715C0D236466F1000F854E /* Functions.swift in Sources */,
+				1F715C34236469D9000F854E /* GitHubExample.swift in Sources */,
+				1F715C11236466F4000F854E /* RootView.swift in Sources */,
+				1F715C36236469D9000F854E /* GitHubView.swift in Sources */,
+				1F715C18236466FC000F854E /* CounterExample.swift in Sources */,
+				1F715C0E236466F4000F854E /* AppView.swift in Sources */,
+				1F715C12236466FC000F854E /* ActivityIndicatorView.swift in Sources */,
+				1F715C0F236466F4000F854E /* Root.swift in Sources */,
+				1F715C1C236466FC000F854E /* Todo.swift in Sources */,
+				1F715BF52364661F000F854E /* AppDelegate.swift in Sources */,
+				1F715C16236466FC000F854E /* IntroExample.swift in Sources */,
+				1F715C0A236466F1000F854E /* SwiftUI+Helper.swift in Sources */,
+				1F715C06236466ED000F854E /* CommonEffectQueue.swift in Sources */,
+				1F715C15236466FC000F854E /* IfLetView.swift in Sources */,
+				1F715C2223646700000F854E /* Stopwatch.swift in Sources */,
+				1F715C0C236466F1000F854E /* DateUtil.swift in Sources */,
+				1F715C0B236466F1000F854E /* ImageLoader.swift in Sources */,
+				1F715C17236466FC000F854E /* IntroView.swift in Sources */,
+				1F715C10236466F4000F854E /* Root.State.Current.swift in Sources */,
+				1F715C08236466F1000F854E /* Either.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1FD96F8322E00A56005DBB61 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -368,6 +539,7 @@
 				1F63A0A6235B68EC006B4F83 /* SwiftUI+Helper.swift in Sources */,
 				1F5886A02354A3310052A690 /* Todo.swift in Sources */,
 				1F91AB89235CB25D0054CE37 /* Stopwatch.swift in Sources */,
+				1F715C2E236467BC000F854E /* Image+macOS.swift in Sources */,
 				1FD7A6C622E38342005130FB /* IntroView.swift in Sources */,
 				1FD7A6C122E380EF005130FB /* StateDiagramView.swift in Sources */,
 				1FA2BD76235633F90015C530 /* GitHubExample.swift in Sources */,
@@ -387,6 +559,7 @@
 				1F2F06102356E5F400211CF3 /* WebView.swift in Sources */,
 				1FA2BD78235633F90015C530 /* GitHub.swift in Sources */,
 				1FC021AE2352C4C600C117F9 /* IntroExample.swift in Sources */,
+				1F715C3123646840000F854E /* AppKitSupport.swift in Sources */,
 				1F91AB8B235CBD310054CE37 /* DateUtil.swift in Sources */,
 				1FC0218823529DEE00C117F9 /* Counter.swift in Sources */,
 				1FE19DB4234A9F5A00C7B991 /* Optics.swift in Sources */,
@@ -403,6 +576,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		1F715BFD23646620000F854E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1F715BFE23646620000F854E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
 		1FD96F9522E00A58005DBB61 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -414,6 +595,50 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		1F715C0223646620000F854E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Harvest-SwiftUI-Gallery-macOS/Harvest-SwiftUI-Gallery-macOS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"Harvest-SwiftUI-Gallery-macOS/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Harvest-SwiftUI-Gallery-macOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = com.inamiy.Harvest-SwiftUI-Gallery-macOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		1F715C0323646620000F854E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Harvest-SwiftUI-Gallery-macOS/Harvest-SwiftUI-Gallery-macOS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"Harvest-SwiftUI-Gallery-macOS/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Harvest-SwiftUI-Gallery-macOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = com.inamiy.Harvest-SwiftUI-Gallery-macOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		1FD96F9922E00A58005DBB61 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -573,6 +798,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1F715C0423646620000F854E /* Build configuration list for PBXNativeTarget "Harvest-SwiftUI-Gallery-macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1F715C0223646620000F854E /* Debug */,
+				1F715C0323646620000F854E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		1FD96F8222E00A56005DBB61 /* Build configuration list for PBXProject "Harvest-SwiftUI-Gallery" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -605,6 +839,21 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		1F715C2723646730000F854E /* Harvest */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1FA3E28A2349BD1A00F4A1CF /* XCRemoteSwiftPackageReference "Harvest" */;
+			productName = Harvest;
+		};
+		1F715C2923646730000F854E /* HarvestOptics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1FA3E28A2349BD1A00F4A1CF /* XCRemoteSwiftPackageReference "Harvest" */;
+			productName = HarvestOptics;
+		};
+		1F715C2B23646730000F854E /* HarvestStore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1FA3E28A2349BD1A00F4A1CF /* XCRemoteSwiftPackageReference "Harvest" */;
+			productName = HarvestStore;
+		};
 		1FA3E28B2349BD1A00F4A1CF /* Harvest */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1FA3E28A2349BD1A00F4A1CF /* XCRemoteSwiftPackageReference "Harvest" */;

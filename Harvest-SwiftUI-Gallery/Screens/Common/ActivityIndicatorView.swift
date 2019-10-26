@@ -1,5 +1,7 @@
 import SwiftUI
 
+#if canImport(UIKit)
+
 struct ActivityIndicatorView: UIViewRepresentable
 {
     @Binding
@@ -40,3 +42,5 @@ struct ActivityIndicatorView_Previews: PreviewProvider
         }
     }
 }
+
+#endif

@@ -26,16 +26,16 @@ struct TodoView: View
 
             picker()
         }
-        .navigationBarItems(
-            trailing: Button(action: { self.store.send(.toggleEdit) }) {
-                if self.store.state.isEditing {
-                    Text("Done")
-                }
-                else {
-                    Text("Edit")
-                }
-            }
-        )
+//        .navigationBarItems(
+//            trailing: Button(action: { self.store.send(.toggleEdit) }) {
+//                if self.store.state.isEditing {
+//                    Text("Done")
+//                }
+//                else {
+//                    Text("Edit")
+//                }
+//            }
+//        )
     }
 
     private func newItemTextField() -> some View

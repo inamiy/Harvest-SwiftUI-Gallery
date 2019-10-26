@@ -1,6 +1,8 @@
 import SafariServices
 import SwiftUI
 
+#if canImport(UIKit)
+
 struct WebView: UIViewControllerRepresentable
 {
     let url: URL
@@ -29,3 +31,5 @@ struct WebView_Previews: PreviewProvider
         }
     }
 }
+
+#endif

@@ -13,11 +13,13 @@ struct RootView: View
     var body: some View
     {
         return VStack {
+
             NavigationView {
                 List(allExamples, id: \.exampleTitle) { example in
                     NavigationLink(
                         destination: example.exampleView(store: self.store)
-                            .navigationBarTitle("\(example.exampleTitle)", displayMode: .inline),
+                            .frame(minWidth: 600, maxWidth: 600, minHeight: 300, maxHeight: .infinity),
+//                            .navigationBarTitle("\(example.exampleTitle)", displayMode: .inline),
                         isActive: self.store.current
                             .stateBinding(onChange: Root.Input.changeCurrent)
                             .transform(
@@ -36,7 +38,8 @@ struct RootView: View
                         .padding(5)
                     }
                 }
-                .navigationBarTitle(Text("🌾 Harvest Gallery 🖼️"), displayMode: .large)
+                .frame(minWidth: 300, maxWidth: 300, minHeight: 300, maxHeight: .infinity)
+//                .navigationBarTitle(Text("🌾 Harvest Gallery 🖼️"), displayMode: .large)
             }
 
 //            Divider()

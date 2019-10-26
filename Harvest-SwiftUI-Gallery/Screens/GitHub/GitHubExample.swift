@@ -12,6 +12,8 @@ struct GitHubExample: Example
 
     func exampleView(store: Store<Root.Input, Root.State>.Proxy) -> AnyView
     {
+        #if canImport(UIKit)
+
         guard let currentBinding = Binding(store.$state.current),
             let stateBinding = Binding(currentBinding.github) else
         {
@@ -24,5 +26,11 @@ struct GitHubExample: Example
         )
 
         return GitHubView(store: substore).toAnyView()
+
+        #else
+
+        return Text("Not ready").toAnyView()
+
+        #endif
     }
 }
