@@ -53,7 +53,7 @@ extension StateDiagram
             .forceLogout | canForceLogout => .loggingOut | Effect(logoutOKProducer, queue: .request)
         ]
 
-        return .reduce(mappings)
+        return .reduce(.first, mappings)
     }
 
     typealias EffectMapping = Harvester<Input, State>.EffectMapping<EffectQueue, Never>

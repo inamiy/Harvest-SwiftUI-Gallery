@@ -16,12 +16,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
 
-            let scheduler = DispatchQueue(label: "com.inamiy.Harvest-SwiftUI-Gallery")
-
             let store = Store<Root.Input, Root.State>(
                 state: Root.State(current: nil),
-                mapping: Root.effectMapping(scheduler: scheduler),
-                scheduler: scheduler
+                mapping: Root.effectMapping(scheduler: DispatchQueue.main)
             )
 
             window.rootViewController = UIHostingController(

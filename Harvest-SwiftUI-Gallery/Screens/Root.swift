@@ -44,7 +44,7 @@ extension Root
         scheduler: S
     ) -> EffectMapping
     {
-        return .reduce([
+        return .reduce(.all, [
             .makeInout { input, state in
                 switch input {
                 case let .changeCurrent(current):

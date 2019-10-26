@@ -119,7 +119,7 @@ extension GitHub
             return .empty
         }
 
-        return .reduce([
+        return .reduce(.first, [
             effectMapping,
             ImageLoader.effectMapping(scheduler: scheduler)
                 .transform(input: .init(prism: .imageLoader))
