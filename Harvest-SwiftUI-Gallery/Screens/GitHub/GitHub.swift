@@ -1,5 +1,6 @@
 import UIKit
 import Combine
+import FunOptics
 import Harvest
 import HarvestOptics
 
@@ -122,8 +123,8 @@ extension GitHub
         return .reduce(.first, [
             effectMapping,
             ImageLoader.effectMapping(scheduler: scheduler)
-                .transform(input: .init(prism: .imageLoader))
-                .transform(state: .init(lens: .imageLoader))
+                .transform(input: fromEnumProperty(\._imageLoader))
+                .transform(state: .init(lens: Lens(\.imageLoader)))
         ])
     }
 
@@ -212,6 +213,83 @@ extension GitHub
         private enum CodingKeys: CodingKey
         {
             case items
+        }
+    }
+}
+
+// MARK: - Enum Properties
+
+extension GitHub.Input
+{
+    var onAppear: Void?
+    {
+        guard case .onAppear = self else { return nil }
+        return ()
+    }
+
+    var updateSearchText: String?
+    {
+        get {
+            guard case let .updateSearchText(value) = self else { return nil }
+            return value
+        }
+        set {
+            guard case .updateSearchText = self, let newValue = newValue else { return }
+            self = .updateSearchText(newValue)
+        }
+    }
+
+    var _updateItems: [GitHub.Repository]?
+    {
+        get {
+            guard case let ._updateItems(value) = self else { return nil }
+            return value
+        }
+        set {
+            guard case ._updateItems = self, let newValue = newValue else { return }
+            self = ._updateItems(newValue)
+        }
+    }
+
+    var _showError: String?
+    {
+        get {
+            guard case let ._showError(value) = self else { return nil }
+            return value
+        }
+        set {
+            guard case ._showError = self, let newValue = newValue else { return }
+            self = ._showError(message: newValue)
+        }
+    }
+
+    var tapRow: Int?
+    {
+        get {
+            guard case let .tapRow(value) = self else { return nil }
+            return value
+        }
+        set {
+            guard case .tapRow = self, let newValue = newValue else { return }
+            self = .tapRow(at: newValue)
+        }
+    }
+
+    var dismiss: Void?
+    {
+        guard case .dismiss = self else { return nil }
+        return ()
+    }
+
+    var _imageLoader: ImageLoader.Input?
+    {
+        get {
+            guard case let ._imageLoader(value) = self else { return nil }
+            return value
+        }
+        set {
+            guard case ._imageLoader = self, let newValue = newValue else { return }
+            self = ._imageLoader(newValue)
         }
     }
 }

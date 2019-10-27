@@ -1,4 +1,5 @@
 import Combine
+import FunOptics
 import Harvest
 import HarvestOptics
 
@@ -67,27 +68,27 @@ extension Root
             },
 
             Counter.mapping.toEffectMapping()
-                .transform(input: .init(prism: .counter))
-                .transform(state: .counter),
+                .transform(input: fromEnumProperty(\.counter))
+                .transform(state: Lens(\.current) >>> some() >>> fromEnumProperty(\.counter)),
 
             Todo.mapping.toEffectMapping()
-                .transform(input: .init(prism: .todo))
-                .transform(state: .todo)
+                .transform(input: fromEnumProperty(\.todo))
+                .transform(state: Lens(\.current) >>> some() >>> fromEnumProperty(\.todo))
                 .transform(id: .init(tryGet: { _ in .none }, inject: absurd)),
 
             StateDiagram.effectMapping(scheduler: scheduler)
-                .transform(input: .init(prism: .stateDiagram))
-                .transform(state: .stateDiagram)
+                .transform(input: fromEnumProperty(\.stateDiagram))
+                .transform(state: Lens(\.current) >>> some() >>> fromEnumProperty(\.stateDiagram))
                 .transform(id: .init(tryGet: { _ in .none }, inject: absurd)),
 
             Stopwatch.effectMapping(scheduler: scheduler)
-                .transform(input: .init(prism: .stopwatch))
-                .transform(state: .stopwatch)
+                .transform(input: fromEnumProperty(\.stopwatch))
+                .transform(state: Lens(\.current) >>> some() >>> fromEnumProperty(\.stopwatch))
                 .transform(id: .init(tryGet: { $0.stopwatch }, inject: EffectID.stopwatch)),
 
             GitHub.effectMapping(scheduler: scheduler, maxConcurrency: .max(3))
-                .transform(input: .init(prism: .github))
-                .transform(state: .github)
+                .transform(input: fromEnumProperty(\.github))
+                .transform(state: Lens(\.current) >>> some() >>> fromEnumProperty(\.github))
                 .transform(id: .init(tryGet: { $0.github }, inject: EffectID.github)),
         ])
     }
@@ -111,6 +112,83 @@ extension Root
         {
             guard case let .github(value) = self else { return nil }
             return value
+        }
+    }
+}
+
+// MARK: - Enum Properties
+
+extension Root.Input
+{
+    var changeCurrent: Root.State.Current??
+    {
+        get {
+            guard case let .changeCurrent(value) = self else { return nil }
+            return value
+        }
+        set {
+            guard case .changeCurrent = self, let newValue = newValue else { return }
+            self = .changeCurrent(newValue)
+        }
+    }
+
+    var counter: Counter.Input?
+    {
+        get {
+            guard case let .counter(value) = self else { return nil }
+            return value
+        }
+        set {
+            guard case .counter = self, let newValue = newValue else { return }
+            self = .counter(newValue)
+        }
+    }
+
+    var stopwatch: Stopwatch.Input?
+    {
+        get {
+            guard case let .stopwatch(value) = self else { return nil }
+            return value
+        }
+        set {
+            guard case .stopwatch = self, let newValue = newValue else { return }
+            self = .stopwatch(newValue)
+        }
+    }
+
+    var stateDiagram: StateDiagram.Input?
+    {
+        get {
+            guard case let .stateDiagram(value) = self else { return nil }
+            return value
+        }
+        set {
+            guard case .stateDiagram = self, let newValue = newValue else { return }
+            self = .stateDiagram(newValue)
+        }
+    }
+
+    var todo: Todo.Input?
+    {
+        get {
+            guard case let .todo(value) = self else { return nil }
+            return value
+        }
+        set {
+            guard case .todo = self, let newValue = newValue else { return }
+            self = .todo(newValue)
+        }
+    }
+
+    var github: GitHub.Input?
+    {
+        get {
+            guard case let .github(value) = self else { return nil }
+            return value
+        }
+        set {
+            guard case .github = self, let newValue = newValue else { return }
+            self = .github(newValue)
         }
     }
 }

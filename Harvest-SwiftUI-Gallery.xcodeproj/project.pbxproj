@@ -47,7 +47,6 @@
 		1FD96FD622E0397E005DBB61 /* StateDiagram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD96FD422E0397E005DBB61 /* StateDiagram.swift */; };
 		1FE19DB0234A9F0200C7B991 /* HarvestStore in Frameworks */ = {isa = PBXBuildFile; productRef = 1FE19DAF234A9F0200C7B991 /* HarvestStore */; };
 		1FE19DB2234A9F0500C7B991 /* HarvestOptics in Frameworks */ = {isa = PBXBuildFile; productRef = 1FE19DB1234A9F0500C7B991 /* HarvestOptics */; };
-		1FE19DB4234A9F5A00C7B991 /* Optics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE19DB3234A9F5A00C7B991 /* Optics.swift */; };
 		1FE19DB6234AB7E500C7B991 /* CommonEffectQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE19DB5234AB7E500C7B991 /* CommonEffectQueue.swift */; };
 /* End PBXBuildFile section */
 
@@ -104,7 +103,6 @@
 		1FD96F9822E00A58005DBB61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1FD96FD222E0397E005DBB61 /* Root.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Root.swift; sourceTree = "<group>"; };
 		1FD96FD422E0397E005DBB61 /* StateDiagram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateDiagram.swift; sourceTree = "<group>"; };
-		1FE19DB3234A9F5A00C7B991 /* Optics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Optics.swift; sourceTree = "<group>"; };
 		1FE19DB5234AB7E500C7B991 /* CommonEffectQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonEffectQueue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -219,7 +217,6 @@
 				1FD96F8C22E00A56005DBB61 /* SceneDelegate.swift */,
 				1FC0218B2352AEAE00C117F9 /* Example.swift */,
 				1FE19DB5234AB7E500C7B991 /* CommonEffectQueue.swift */,
-				1FE19DB3234A9F5A00C7B991 /* Optics.swift */,
 				1F199766235AC80900B4F99C /* Utilities */,
 				1FD96FD122E0397E005DBB61 /* Screens */,
 				1FD96F9022E00A58005DBB61 /* Assets.xcassets */,
@@ -389,7 +386,6 @@
 				1FC021AE2352C4C600C117F9 /* IntroExample.swift in Sources */,
 				1F91AB8B235CBD310054CE37 /* DateUtil.swift in Sources */,
 				1FC0218823529DEE00C117F9 /* Counter.swift in Sources */,
-				1FE19DB4234A9F5A00C7B991 /* Optics.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
