@@ -8,9 +8,9 @@ import HarvestStore
 struct AppView: View
 {
     @ObservedObject
-    private var store: Store<Root.Input, Root.State>
+    private var store: Store<DebugRoot.Input, DebugRoot.State>
 
-    init(store: Store<Root.Input, Root.State>)
+    init(store: Store<DebugRoot.Input, DebugRoot.State>)
     {
         self.store = store
     }
@@ -18,6 +18,6 @@ struct AppView: View
     var body: some View
     {
         // IMPORTANT: Pass `Store.Proxy` to children.
-        RootView(store: store.proxy)
+        DebugRootView(store: self.store.proxy)
     }
 }

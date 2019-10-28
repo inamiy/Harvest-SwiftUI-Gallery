@@ -99,9 +99,7 @@ extension Todo
         var intValue: Int
         {
             get { self.rawValue }
-            set {
-                // Do nothing. This setter will be replaced via `Store.Proxy.stateBinding(get:onChange:)`.
-            }
+            set { assertionFailure("Should be replaced by `Store.Proxy.stateBinding`") }
         }
 
         fileprivate var filter: (Item) -> Bool
