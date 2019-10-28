@@ -16,9 +16,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
 
-            let store = Store<Root.Input, Root.State>(
-                state: Root.State(current: nil),
-                mapping: Root.effectMapping(scheduler: DispatchQueue.main)
+            let store = Store<DebugRoot.Input, DebugRoot.State>(
+                state: DebugRoot.State(Root.State(current: nil)),
+                mapping: DebugRoot.effectMapping(scheduler: DispatchQueue.main)
             )
 
             window.rootViewController = UIHostingController(

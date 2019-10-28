@@ -46,11 +46,16 @@ struct TodoView: View
 
             TextField(
                 "Create a new TODO",
+
                 // IMPORTANT:
                 // Explicit subscript access helper is required to avoid
                 // `SwiftUI.BindingOperations.ForceUnwrapping` failure crash.
                 // This issue occurs when `TodoView` is navigation-poped.
-                text: self.store.$state[\.newText],
+                //text: self.store.$state[\.newText],
+
+                // Or, use `stateBinding(onChange:)` with providing an explicit next `Input`.
+                // NOTE: This also allows to time-travel each character inputting.
+                text: self.store.newText.stateBinding(onChange: Todo.Input.updateNewText),
                 onCommit: { self.store.send(.createTodo) }
             )
                 .textFieldStyle(RoundedBorderTextFieldStyle())

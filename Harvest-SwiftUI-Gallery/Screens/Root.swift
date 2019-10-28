@@ -27,14 +27,6 @@ extension Root
         /// Shared state.
         var shared: Shared = .init()
 
-        /// For debugging purpose.
-        var isDebug: Bool = false
-        {
-            didSet {
-                print("===> Root.State = \(self)")
-            }
-        }
-
         struct Shared
         {
             // To be done someday :)
@@ -46,26 +38,7 @@ extension Root
     ) -> EffectMapping
     {
         return .reduce(.all, [
-            .makeInout { input, state in
-                switch input {
-                case let .changeCurrent(current):
-                    state.current = current
-
-                    // When navigating to example, cancel its previous running effects.
-                    //
-                    // NOTE:
-                    // We should NOT cancel previous effects at example screen's
-                    // `onAppear`, `onDisappear`, `init`, `deinit`, etc,
-                    // because we sometimes want to keep them running
-                    // (e.g. Stopwatch temporarily visiting child screen),
-                    // so `.changeCurrent` is the best timing to cancel them.
-                    let currentEffectIDs = current?.allEffectIDs
-                    return currentEffectIDs.map { .cancel($0) } ?? .empty
-
-                default:
-                    return nil
-                }
-            },
+            previousEffectCancelMapping(),
 
             Counter.mapping.toEffectMapping()
                 .transform(input: fromEnumProperty(\.counter))
@@ -91,6 +64,29 @@ extension Root
                 .transform(state: Lens(\.current) >>> some() >>> fromEnumProperty(\.github))
                 .transform(id: .init(tryGet: { $0.github }, inject: EffectID.github)),
         ])
+    }
+
+    /// When navigating to example, cancel its previous running effects.
+    private static func previousEffectCancelMapping() -> EffectMapping
+    {
+        .makeInout { input, state in
+            switch input {
+            case let .changeCurrent(current):
+                state.current = current
+
+                // NOTE:
+                // We should NOT cancel previous effects at example screen's
+                // `onAppear`, `onDisappear`, `init`, `deinit`, etc,
+                // because we sometimes want to keep them running
+                // (e.g. Stopwatch temporarily visiting child screen),
+                // so `.changeCurrent` is the best timing to cancel them.
+                let currentEffectIDs = current?.allEffectIDs
+                return currentEffectIDs.map { .cancel($0) } ?? .empty
+
+            default:
+                return nil
+            }
+        }
     }
 
     typealias EffectMapping = Harvester<Input, State>.EffectMapping<EffectQueue, EffectID>

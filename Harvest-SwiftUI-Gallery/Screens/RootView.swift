@@ -26,6 +26,8 @@ struct RootView: View
                                     isPresenting ? example.exampleInitialState : nil
                                 }
                             )
+                            // Workaround for SwiftUI's duplicated `isPresenting = false` calls per 1 dismissal.
+                            .removeDuplictates()
                     ) {
                         HStack(alignment: .firstTextBaseline) {
                             example.exampleIcon
@@ -38,13 +40,6 @@ struct RootView: View
                 }
                 .navigationBarTitle(Text("🌾 Harvest Gallery 🖼️"), displayMode: .large)
             }
-
-//            Divider()
-//
-//            Toggle(isOn: store.$state.isDebug) {
-//                Text("Debug Mode")
-//            }
-//            .padding(.horizontal)
         }
     }
 }
