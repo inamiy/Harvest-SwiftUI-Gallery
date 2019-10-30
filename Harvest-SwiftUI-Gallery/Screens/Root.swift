@@ -50,16 +50,19 @@ extension Root
                 .transform(id: .init(tryGet: { _ in .none }, inject: absurd)),
 
             StateDiagram.effectMapping(scheduler: scheduler)
+                .contramapWorld { _ in () }
                 .transform(input: fromEnumProperty(\.stateDiagram))
                 .transform(state: Lens(\.current) >>> some() >>> fromEnumProperty(\.stateDiagram))
                 .transform(id: .init(tryGet: { _ in .none }, inject: absurd)),
 
             Stopwatch.effectMapping(scheduler: scheduler)
+                .contramapWorld { $0.date }
                 .transform(input: fromEnumProperty(\.stopwatch))
                 .transform(state: Lens(\.current) >>> some() >>> fromEnumProperty(\.stopwatch))
                 .transform(id: .init(tryGet: { $0.stopwatch }, inject: EffectID.stopwatch)),
 
             GitHub.effectMapping(scheduler: scheduler, maxConcurrency: .max(3))
+                .contramapWorld { $0.urlSession }
                 .transform(input: fromEnumProperty(\.github))
                 .transform(state: Lens(\.current) >>> some() >>> fromEnumProperty(\.github))
                 .transform(id: .init(tryGet: { $0.github }, inject: EffectID.github)),
@@ -89,7 +92,7 @@ extension Root
         }
     }
 
-    typealias EffectMapping = Harvester<Input, State>.EffectMapping<EffectQueue, EffectID>
+    typealias EffectMapping = Harvester<Input, State>.EffectMapping<World, EffectQueue, EffectID>
 
     typealias EffectQueue = CommonEffectQueue
 
@@ -110,6 +113,8 @@ extension Root
             return value
         }
     }
+
+    typealias World = Harvest_SwiftUI_Gallery.World
 }
 
 // MARK: - Enum Properties

@@ -47,9 +47,10 @@ extension DebugRoot
         ])
     }
 
-    typealias EffectMapping = Harvester<Input, State>.EffectMapping<EffectQueue, EffectID>
+    typealias EffectMapping = Harvester<Input, State>.EffectMapping<World, EffectQueue, EffectID>
     typealias EffectQueue = CommonEffectQueue
     typealias EffectID = Root.EffectID
+    typealias World = Harvest_SwiftUI_Gallery.World
 }
 
 // MARK: - Enum Properties

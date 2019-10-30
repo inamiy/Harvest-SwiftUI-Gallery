@@ -56,7 +56,9 @@ extension StateDiagram
         return .reduce(.first, mappings)
     }
 
-    typealias EffectMapping = Harvester<Input, State>.EffectMapping<EffectQueue, Never>
+    typealias EffectMapping = Harvester<Input, State>.EffectMapping<World, EffectQueue, Never>
 
     typealias EffectQueue = CommonEffectQueue
+
+    typealias World = Void
 }
