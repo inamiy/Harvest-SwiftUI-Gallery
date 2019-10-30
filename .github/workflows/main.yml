@@ -5,6 +5,7 @@ on:
     branches:    
       - master
       - ci/**
+  pull_request:
 
 jobs:
   build:
