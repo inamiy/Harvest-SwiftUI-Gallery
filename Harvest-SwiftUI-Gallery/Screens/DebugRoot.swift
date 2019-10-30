@@ -1,4 +1,3 @@
-import Foundation
 import Combine
 import FunOptics
 import Harvest
@@ -33,12 +32,11 @@ extension DebugRoot
     }
 
     static func effectMapping<S: Scheduler>(
-        urlSession: URLSession,
         scheduler: S
     ) -> EffectMapping
     {
         return .reduce(.all, [
-            Root.effectMapping(urlSession: urlSession, scheduler: scheduler)
+            Root.effectMapping(scheduler: scheduler)
                 .transform(input: fromEnumProperty(\.timeTravel) >>> fromEnumProperty(\.inner))
                 .transform(state: .init(lens: .init(\.timeTravel) >>> .init(\.inner))),
 
