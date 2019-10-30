@@ -1,3 +1,4 @@
+import Foundation
 import Combine
 import FunOptics
 import Harvest
@@ -34,6 +35,7 @@ extension Root
     }
 
     static func effectMapping<S: Scheduler>(
+        urlSession: URLSession,
         scheduler: S
     ) -> EffectMapping
     {
@@ -59,7 +61,7 @@ extension Root
                 .transform(state: Lens(\.current) >>> some() >>> fromEnumProperty(\.stopwatch))
                 .transform(id: .init(tryGet: { $0.stopwatch }, inject: EffectID.stopwatch)),
 
-            GitHub.effectMapping(scheduler: scheduler, maxConcurrency: .max(3))
+            GitHub.effectMapping(urlSession: urlSession, scheduler: scheduler, maxConcurrency: .max(3))
                 .transform(input: fromEnumProperty(\.github))
                 .transform(state: Lens(\.current) >>> some() >>> fromEnumProperty(\.github))
                 .transform(id: .init(tryGet: { $0.github }, inject: EffectID.github)),
