@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate
 
             let store = Store<DebugRoot.Input, DebugRoot.State>(
                 state: DebugRoot.State(Root.State(current: nil)),
-                mapping: DebugRoot.effectMapping(urlSession: .shared, scheduler: DispatchQueue.main)
+                mapping: DebugRoot.effectMapping(scheduler: DispatchQueue.main)
             )
 
             window.rootViewController = UIHostingController(

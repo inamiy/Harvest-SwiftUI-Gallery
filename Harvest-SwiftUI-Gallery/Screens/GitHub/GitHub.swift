@@ -69,7 +69,6 @@ extension GitHub
     }
 
     static func effectMapping<S: Scheduler>(
-        urlSession: URLSession,
         scheduler: S,
         maxConcurrency: Subscribers.Demand
     ) -> EffectMapping
@@ -78,12 +77,12 @@ extension GitHub
             switch input {
             case .onAppear:
                 state.isLoading = true
-                return githubRequest(text: state.searchText, urlSession: urlSession, scheduler: scheduler)
+                return githubRequest(text: state.searchText, scheduler: scheduler)
 
             case let .updateSearchText(text):
                 state.searchText = text
                 state.isLoading = !text.isEmpty
-                return githubRequest(text: text, urlSession: urlSession, scheduler: scheduler)
+                return githubRequest(text: text, scheduler: scheduler)
 
             case let ._updateItems(items):
                 state.items = items
@@ -131,7 +130,6 @@ extension GitHub
 
     private static func githubRequest<_EffectID: Equatable, S: Scheduler>(
         text: String,
-        urlSession: URLSession,
         scheduler: S
     ) -> Effect<Input, EffectQueue, _EffectID>
     {
@@ -152,7 +150,7 @@ extension GitHub
 
         // Search request.
         // NOTE: `delaySubscription` + `EffectQueue.request` (`.latest` strategy) will work as `debounce`.
-        let publisher = urlSession.dataTaskPublisher(for: request)
+        let publisher = URLSession.shared.dataTaskPublisher(for: request)
             .delaySubscription(for: .seconds(0.3), scheduler: scheduler)
             .map { $0.data }
             .decode(type: SearchRepositoryResponse.self, decoder: decoder)
