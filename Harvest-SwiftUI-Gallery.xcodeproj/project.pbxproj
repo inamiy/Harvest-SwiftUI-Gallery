@@ -610,7 +610,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/inamiy/Harvest";
 			requirement = {
-				branch = "control-the-world";
+				branch = master;
 				kind = branch;
 			};
 		};

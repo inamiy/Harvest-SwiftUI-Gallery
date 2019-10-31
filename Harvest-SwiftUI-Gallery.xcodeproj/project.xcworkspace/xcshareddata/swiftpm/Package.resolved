@@ -14,8 +14,8 @@
         "package": "Harvest",
         "repositoryURL": "https://github.com/inamiy/Harvest",
         "state": {
-          "branch": "control-the-world",
-          "revision": "c9b29c67f1a3df68014274e32357a299af63ba87",
+          "branch": "master",
+          "revision": "9122239f1f52b9979e160f54705f9e8f4004ae3b",
           "version": null
         }
       }
