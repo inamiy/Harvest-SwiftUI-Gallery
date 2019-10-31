@@ -38,11 +38,14 @@ extension ImageLoader
                     state.isRequesting[url] = true
 
                     // Fetch & cache image.
-                    let effect = Effect<Input, CommonEffectQueue, EffectID>(
-                        self.fetchImage(request: Request(url: url))
-                            .compactMap { $0.map { Input._cacheImage(url: url, image: $0.image) } },
+                    let effect = Effect<World, Input, CommonEffectQueue, EffectID>(
                         id: EffectID(url: url)
-                    )
+                    ) { world in
+                        self.fetchImage(request: Request(url: url), world: world)
+                            .compactMap { $0.map { Input._cacheImage(url: url, image: $0.image) } }
+
+                    }
+
                     return (state, effect)
                 }
                 else {
@@ -65,7 +68,7 @@ extension ImageLoader
         }
     }
 
-    typealias EffectMapping = Harvester<Input, State>.EffectMapping<EffectQueue, EffectID>
+    typealias EffectMapping = Harvester<Input, State>.EffectMapping<World, EffectQueue, EffectID>
 
     typealias EffectQueue = CommonEffectQueue
 
@@ -73,6 +76,8 @@ extension ImageLoader
     {
         let url: URL
     }
+
+    typealias World = URLSession
 }
 
 extension ImageLoader
@@ -88,13 +93,14 @@ extension ImageLoader
     }
 
     public static func fetchImage(
-        request: Request
+        request: Request,
+        world: World
     ) -> AnyPublisher<Response?, Never>
     {
         print("===> fetchImage = \(request.url)")
 
         let urlRequest = URLRequest(url: request.url)
-        return URLSession.shared.dataTaskPublisher(for: urlRequest)
+        return world.dataTaskPublisher(for: urlRequest)
             .map { UIImage(data: $0.data).map { Response(image: $0) } }
             .replaceError(with: nil)
             .eraseToAnyPublisher()

@@ -5,11 +5,15 @@ enum DateUtil {}
 
 extension DateUtil
 {
-    static func getDate<Input>(next: @escaping (Date) -> Input) -> AnyPublisher<Input, Never>
+    static func getDate<Input>(next: @escaping (Date) -> Input)
+        -> (_ makeDate: @escaping () -> Date)
+        -> AnyPublisher<Input, Never>
     {
-        Deferred { Just(Date()) }
-            .map(next)
-            .eraseToAnyPublisher()
+        { makeDate in
+            Deferred { Just(makeDate()) }
+                .map(next)
+                .eraseToAnyPublisher()
+        }
     }
 
     static func timeString(time: TimeInterval) -> String

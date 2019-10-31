@@ -95,7 +95,7 @@ extension GitHub
                 let imageURLs = items.map { $0.owner.avatarUrl }
 
                 // FIXME: No lazy loading yet.
-                return Effect<Input, EffectQueue, EffectID>(
+                return Effect<World, Input, EffectQueue, EffectID>(
                     Publishers.Sequence(sequence: imageURLs)
                         .flatMap(maxPublishers: maxConcurrency) {
                             Just(Input._imageLoader(.requestImage(url: $0)))
@@ -131,7 +131,7 @@ extension GitHub
     private static func githubRequest<_EffectID: Equatable, S: Scheduler>(
         text: String,
         scheduler: S
-    ) -> Effect<Input, EffectQueue, _EffectID>
+    ) -> Effect<World, Input, EffectQueue, _EffectID>
     {
         guard !text.isEmpty else {
             return Effect(Just(Input._updateItems([])))
@@ -148,23 +148,25 @@ extension GitHub
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
 
-        // Search request.
-        // NOTE: `delaySubscription` + `EffectQueue.request` (`.latest` strategy) will work as `debounce`.
-        let publisher = URLSession.shared.dataTaskPublisher(for: request)
-            .delaySubscription(for: .seconds(0.3), scheduler: scheduler)
-            .map { $0.data }
-            .decode(type: SearchRepositoryResponse.self, decoder: decoder)
-            .map(Input.init(response:))
-            .catch { Result<Input, Never>.Publisher(Input._showError(message: $0.localizedDescription)) }
-
-        return Effect(publisher, queue: .request)
+        return Effect(queue: .request) { world in
+            // Search request.
+            // NOTE: `delaySubscription` + `EffectQueue.request` (`.latest` strategy) will work as `debounce`.
+            world.dataTaskPublisher(for: request)
+                .delaySubscription(for: .seconds(0.3), scheduler: scheduler)
+                .map { $0.data }
+                .decode(type: SearchRepositoryResponse.self, decoder: decoder)
+                .map(Input.init(response:))
+                .catch { Result<Input, Never>.Publisher(Input._showError(message: $0.localizedDescription)) }
+        }
     }
 
-    typealias EffectMapping = Harvester<Input, State>.EffectMapping<EffectQueue, EffectID>
+    typealias EffectMapping = Harvester<Input, State>.EffectMapping<World, EffectQueue, EffectID>
 
     typealias EffectQueue = CommonEffectQueue
 
     typealias EffectID = ImageLoader.EffectID
+
+    typealias World = URLSession
 }
 
 // MARK: - Data Models

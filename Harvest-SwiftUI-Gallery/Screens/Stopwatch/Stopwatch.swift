@@ -133,13 +133,13 @@ extension Stopwatch
                 // Then, it can be replaced with a mocked effect for future improvements.
                 let getStartDate = DateUtil.getDate(next: Input._didStart)
 
-                return Effect(getStartDate, queue: .default, id: .getStartDate)
+                return Effect(queue: .default, id: .getStartDate, getStartDate)
 
             case let (.start, .paused(time)):
                 state.status = .preparing(time: time)
 
                 let getStartDate = DateUtil.getDate(next: Input._didStart)
-                return Effect(getStartDate, queue: .default, id: .getStartDate)
+                return Effect(queue: .default, id: .getStartDate, getStartDate)
 
             case let (._didStart(date), .preparing(time)):
                 state.status = .running(time: time, startDate: date, currentDate: date)
@@ -167,7 +167,7 @@ extension Stopwatch
         }
     }
 
-    typealias EffectMapping = Harvester<Input, State>.EffectMapping<EffectQueue, EffectID>
+    typealias EffectMapping = Harvester<Input, State>.EffectMapping<World, EffectQueue, EffectID>
 
     typealias EffectQueue = CommonEffectQueue
 
@@ -177,11 +177,13 @@ extension Stopwatch
         case timer
     }
 
+    typealias World = () -> Date // getDate
+
 }
 
 extension Stopwatch
 {
-    private static func timerEffect(startDate: Date) -> Effect<Input, EffectQueue, EffectID>
+    private static func timerEffect(startDate: Date) -> Effect<World, Input, EffectQueue, EffectID>
     {
         let timer = Timer.publish(every: 0.01, tolerance: 0.01, on: .main, in: .common)
             .autoconnect()

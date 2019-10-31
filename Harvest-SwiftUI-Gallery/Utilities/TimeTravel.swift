@@ -65,11 +65,11 @@ extension TimeTravel
     }
 
     /// - Important: This mapping needs to be called after `InnerState` has changed.
-    static func effectMapping<InnerInput, InnerState, Queue: EffectQueueProtocol, ID, S: Scheduler>(
+    static func effectMapping<World, InnerInput, InnerState, Queue: EffectQueueProtocol, ID, S: Scheduler>(
         scheduler: S
-    ) -> Harvester<Input<InnerInput>, State<InnerState>>.EffectMapping<Queue, ID>
+    ) -> Harvester<Input<InnerInput>, State<InnerState>>.EffectMapping<World, Queue, ID>
     {
-        func tryTimeTravel(state: inout State<InnerState>, newIndex: Int) -> Effect<Input<InnerInput>, Queue, ID>?
+        func tryTimeTravel(state: inout State<InnerState>, newIndex: Int) -> Effect<World, Input<InnerInput>, Queue, ID>?
         {
             guard !state.histories.isEmpty && newIndex >= 0 && newIndex < state.histories.count else {
                 return nil
@@ -126,8 +126,8 @@ extension TimeTravel
         }
     }
 
-    typealias EffectMapping<InnerInput, InnerState, EffectQueue, EffectID>
-        = Harvester<Input<InnerInput>, State<InnerState>>.EffectMapping<EffectQueue, EffectID>
+    typealias EffectMapping<World, InnerInput, InnerState, EffectQueue, EffectID>
+        = Harvester<Input<InnerInput>, State<InnerState>>.EffectMapping<World, EffectQueue, EffectID>
         where EffectQueue: EffectQueueProtocol, EffectID: Equatable
 
 }

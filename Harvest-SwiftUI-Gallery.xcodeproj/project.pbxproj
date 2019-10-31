@@ -51,6 +51,7 @@
 		1FE19DB0234A9F0200C7B991 /* HarvestStore in Frameworks */ = {isa = PBXBuildFile; productRef = 1FE19DAF234A9F0200C7B991 /* HarvestStore */; };
 		1FE19DB2234A9F0500C7B991 /* HarvestOptics in Frameworks */ = {isa = PBXBuildFile; productRef = 1FE19DB1234A9F0500C7B991 /* HarvestOptics */; };
 		1FE19DB6234AB7E500C7B991 /* CommonEffectQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE19DB5234AB7E500C7B991 /* CommonEffectQueue.swift */; };
+		1FFAE9B42369EA1700C5767A /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFAE9B32369EA1700C5767A /* World.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -110,6 +111,7 @@
 		1FD96FD222E0397E005DBB61 /* Root.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Root.swift; sourceTree = "<group>"; };
 		1FD96FD422E0397E005DBB61 /* StateDiagram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateDiagram.swift; sourceTree = "<group>"; };
 		1FE19DB5234AB7E500C7B991 /* CommonEffectQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonEffectQueue.swift; sourceTree = "<group>"; };
+		1FFAE9B32369EA1700C5767A /* World.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,6 +225,7 @@
 				1FD96F8A22E00A56005DBB61 /* AppDelegate.swift */,
 				1FD96F8C22E00A56005DBB61 /* SceneDelegate.swift */,
 				1FC0218B2352AEAE00C117F9 /* Example.swift */,
+				1FFAE9B32369EA1700C5767A /* World.swift */,
 				1FE19DB5234AB7E500C7B991 /* CommonEffectQueue.swift */,
 				1F199766235AC80900B4F99C /* Utilities */,
 				1FD96FD122E0397E005DBB61 /* Screens */,
@@ -387,6 +390,7 @@
 				1FD96FD522E0397E005DBB61 /* Root.swift in Sources */,
 				1FC0218C2352AEAE00C117F9 /* Example.swift in Sources */,
 				1F91AB88235CB25D0054CE37 /* StopwatchView.swift in Sources */,
+				1FFAE9B42369EA1700C5767A /* World.swift in Sources */,
 				1F199768235AC81300B4F99C /* Either.swift in Sources */,
 				1FC021B02352C52000C117F9 /* CounterExample.swift in Sources */,
 				1FE19DB6234AB7E500C7B991 /* CommonEffectQueue.swift in Sources */,
