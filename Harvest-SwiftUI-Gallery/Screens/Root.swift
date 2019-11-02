@@ -6,6 +6,7 @@ import HarvestOptics
 /// Root namespace.
 enum Root {}
 
+
 extension Root
 {
     enum Input
@@ -45,13 +46,13 @@ extension Root
             Todo.mapping.toEffectMapping()
                 .transform(input: fromEnumProperty(\.todo))
                 .transform(state: Lens(\.current) >>> some() >>> fromEnumProperty(\.todo))
-                .transform(id: Prism(tryGet: { _ in .none }, inject: absurd)),
+                .transform(id: .never),
 
             StateDiagram.effectMapping()
                 .contramapWorld { StateDiagram.World(scheduler: $0.scheduler) }
                 .transform(input: fromEnumProperty(\.stateDiagram))
                 .transform(state: Lens(\.current) >>> some() >>> fromEnumProperty(\.stateDiagram))
-                .transform(id: Prism(tryGet: { _ in .none }, inject: absurd)),
+                .transform(id: .never),
 
             Stopwatch.effectMapping()
                 .contramapWorld { $0.stopwatch }
