@@ -35,13 +35,13 @@ extension DebugRoot
     {
         return .reduce(.all, [
             Root.effectMapping()
-                .transform(input: fromEnumProperty(\.timeTravel) >>> fromEnumProperty(\.inner))
+                .transform(input: .fromEnum(\.timeTravel) >>> .fromEnum(\.inner))
                 .transform(state: .init(lens: .init(\.timeTravel) >>> .init(\.inner))),
 
             // Important: TimeTravel mapping needs to be called after `Root.effectMapping` (after `Root.State` changed).
             TimeTravel.effectMapping()
                 .contramapWorld { TimeTravel.World(inner: $0, scheduler: $0.scheduler) }
-                .transform(input: fromEnumProperty(\.timeTravel))
+                .transform(input: .fromEnum(\.timeTravel))
                 .transform(state: .init(lens: .init(\.timeTravel))),
         ])
     }

@@ -121,7 +121,7 @@ extension GitHub
             effectMapping,
             ImageLoader.effectMapping()
                 .contramapWorld { ImageLoader.World(urlSession: $0.urlSession) }
-                .transform(input: fromEnumProperty(\._imageLoader))
+                .transform(input: .fromEnum(\._imageLoader))
                 .transform(state: .init(lens: Lens(\.imageLoader)))
         ])
     }
