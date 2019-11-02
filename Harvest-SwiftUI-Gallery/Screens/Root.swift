@@ -33,9 +33,7 @@ extension Root
         }
     }
 
-    static func effectMapping<S: Scheduler>(
-        scheduler: S
-    ) -> EffectMapping
+    static func effectMapping<S: Scheduler>() -> EffectMapping<S>
     {
         return .reduce(.all, [
             previousEffectCancelMapping(),
@@ -47,30 +45,30 @@ extension Root
             Todo.mapping.toEffectMapping()
                 .transform(input: fromEnumProperty(\.todo))
                 .transform(state: Lens(\.current) >>> some() >>> fromEnumProperty(\.todo))
-                .transform(id: .init(tryGet: { _ in .none }, inject: absurd)),
+                .transform(id: Prism(tryGet: { _ in .none }, inject: absurd)),
 
-            StateDiagram.effectMapping(scheduler: scheduler)
-                .contramapWorld { _ in () }
+            StateDiagram.effectMapping()
+                .contramapWorld { StateDiagram.World(scheduler: $0.scheduler) }
                 .transform(input: fromEnumProperty(\.stateDiagram))
                 .transform(state: Lens(\.current) >>> some() >>> fromEnumProperty(\.stateDiagram))
-                .transform(id: .init(tryGet: { _ in .none }, inject: absurd)),
+                .transform(id: Prism(tryGet: { _ in .none }, inject: absurd)),
 
-            Stopwatch.effectMapping(scheduler: scheduler)
-                .contramapWorld { $0.date }
+            Stopwatch.effectMapping()
+                .contramapWorld { $0.stopwatch }
                 .transform(input: fromEnumProperty(\.stopwatch))
                 .transform(state: Lens(\.current) >>> some() >>> fromEnumProperty(\.stopwatch))
-                .transform(id: .init(tryGet: { $0.stopwatch }, inject: EffectID.stopwatch)),
+                .transform(id: Prism(tryGet: { $0.stopwatch }, inject: EffectID.stopwatch)),
 
-            GitHub.effectMapping(scheduler: scheduler, maxConcurrency: .max(3))
-                .contramapWorld { $0.urlSession }
+            GitHub.effectMapping()
+                .contramapWorld { $0.github }
                 .transform(input: fromEnumProperty(\.github))
                 .transform(state: Lens(\.current) >>> some() >>> fromEnumProperty(\.github))
-                .transform(id: .init(tryGet: { $0.github }, inject: EffectID.github)),
+                .transform(id: Prism(tryGet: { $0.github }, inject: EffectID.github)),
         ])
     }
 
     /// When navigating to example, cancel its previous running effects.
-    private static func previousEffectCancelMapping() -> EffectMapping
+    private static func previousEffectCancelMapping<S: Scheduler>() -> EffectMapping<S>
     {
         .makeInout { input, state in
             switch input {
@@ -92,7 +90,7 @@ extension Root
         }
     }
 
-    typealias EffectMapping = Harvester<Input, State>.EffectMapping<World, EffectQueue, EffectID>
+    typealias EffectMapping<S: Scheduler> = Harvester<Input, State>.EffectMapping<World<S>, EffectQueue, EffectID>
 
     typealias EffectQueue = CommonEffectQueue
 

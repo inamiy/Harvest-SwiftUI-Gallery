@@ -5,7 +5,9 @@ enum DateUtil {}
 
 extension DateUtil
 {
-    static func getDate<Input>(next: @escaping (Date) -> Input)
+    static func getDate<Input>(
+        next: @escaping (Date) -> Input
+    )
         -> (_ makeDate: @escaping () -> Date)
         -> AnyPublisher<Input, Never>
     {

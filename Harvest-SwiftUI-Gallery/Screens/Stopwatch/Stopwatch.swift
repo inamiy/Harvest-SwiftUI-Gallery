@@ -118,9 +118,7 @@ extension Stopwatch
 
     }
 
-    static func effectMapping<S: Scheduler>(
-        scheduler: S
-    ) -> EffectMapping
+    static func effectMapping<S: Scheduler>() -> EffectMapping<S>
     {
         return .makeInout { input, state in
             switch (input, state.status) {
@@ -133,13 +131,13 @@ extension Stopwatch
                 // Then, it can be replaced with a mocked effect for future improvements.
                 let getStartDate = DateUtil.getDate(next: Input._didStart)
 
-                return Effect(queue: .default, id: .getStartDate, getStartDate)
+                return Effect(queue: .default, id: .getStartDate) { getStartDate($0.getDate) }
 
             case let (.start, .paused(time)):
                 state.status = .preparing(time: time)
 
                 let getStartDate = DateUtil.getDate(next: Input._didStart)
-                return Effect(queue: .default, id: .getStartDate, getStartDate)
+                return Effect(queue: .default, id: .getStartDate) { getStartDate($0.getDate) }
 
             case let (._didStart(date), .preparing(time)):
                 state.status = .running(time: time, startDate: date, currentDate: date)
@@ -167,7 +165,9 @@ extension Stopwatch
         }
     }
 
-    typealias EffectMapping = Harvester<Input, State>.EffectMapping<World, EffectQueue, EffectID>
+    typealias EffectMapping<S: Scheduler> = Harvester<Input, State>.EffectMapping<World<S>, EffectQueue, EffectID>
+
+    typealias Effect<S: Scheduler> = Harvest.Effect<World<S>, Input, EffectQueue, EffectID>
 
     typealias EffectQueue = CommonEffectQueue
 
@@ -177,13 +177,17 @@ extension Stopwatch
         case timer
     }
 
-    typealias World = () -> Date // getDate
+    struct World<S>
+    {
+        let getDate: () -> Date
+        let scheduler: S
+    }
 
 }
 
 extension Stopwatch
 {
-    private static func timerEffect(startDate: Date) -> Effect<World, Input, EffectQueue, EffectID>
+    private static func timerEffect<S: Scheduler>(startDate: Date) -> Effect<S>
     {
         let timer = Timer.publish(every: 0.01, tolerance: 0.01, on: .main, in: .common)
             .autoconnect()

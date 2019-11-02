@@ -65,11 +65,11 @@ extension TimeTravel
     }
 
     /// - Important: This mapping needs to be called after `InnerState` has changed.
-    static func effectMapping<World, InnerInput, InnerState, Queue: EffectQueueProtocol, ID, S: Scheduler>(
-        scheduler: S
-    ) -> Harvester<Input<InnerInput>, State<InnerState>>.EffectMapping<World, Queue, ID>
+    static func effectMapping<InnerWorld, InnerInput, InnerState, Queue: EffectQueueProtocol, ID, S: Scheduler>()
+        -> Harvester<Input<InnerInput>, State<InnerState>>.EffectMapping<World<InnerWorld, S>, Queue, ID>
     {
-        func tryTimeTravel(state: inout State<InnerState>, newIndex: Int) -> Effect<World, Input<InnerInput>, Queue, ID>?
+        func tryTimeTravel(state: inout State<InnerState>, newIndex: Int)
+            -> Effect<World<InnerWorld, S>, Input<InnerInput>, Queue, ID>?
         {
             guard !state.histories.isEmpty && newIndex >= 0 && newIndex < state.histories.count else {
                 return nil
@@ -83,10 +83,10 @@ extension TimeTravel
             state.isTimeTravelling = true
 
             // Workaround effect for changing to `isTimeTravelling = false` after delay.
-            return Effect(
+            return Effect { world in
                 Just(Input._didTimeTravel)
-                    .delay(for: .seconds(0.1), scheduler: scheduler)
-            )
+                    .delay(for: world.didTimeTravelDelay, scheduler: world.scheduler)
+            }
         }
 
         return .makeInout { input, state in
@@ -130,6 +130,14 @@ extension TimeTravel
         = Harvester<Input<InnerInput>, State<InnerState>>.EffectMapping<World, EffectQueue, EffectID>
         where EffectQueue: EffectQueueProtocol, EffectID: Equatable
 
+    struct World<InnerWorld, S: Scheduler>
+    {
+        let inner: InnerWorld
+        let scheduler: S
+
+        /// Workaround delay.
+        var didTimeTravelDelay: S.SchedulerTimeType.Stride = .seconds(0.1)
+    }
 }
 
 // MARK: - Enum Properties

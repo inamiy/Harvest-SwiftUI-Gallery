@@ -68,21 +68,18 @@ extension GitHub
         }
     }
 
-    static func effectMapping<S: Scheduler>(
-        scheduler: S,
-        maxConcurrency: Subscribers.Demand
-    ) -> EffectMapping
+    static func effectMapping<S: Scheduler>() -> EffectMapping<S>
     {
-        let effectMapping = EffectMapping.makeInout { input, state in
+        let effectMapping = EffectMapping<S>.makeInout { input, state in
             switch input {
             case .onAppear:
                 state.isLoading = true
-                return githubRequest(text: state.searchText, scheduler: scheduler)
+                return githubRequest(text: state.searchText)
 
             case let .updateSearchText(text):
                 state.searchText = text
                 state.isLoading = !text.isEmpty
-                return githubRequest(text: text, scheduler: scheduler)
+                return githubRequest(text: text)
 
             case let ._updateItems(items):
                 state.items = items
@@ -95,13 +92,13 @@ extension GitHub
                 let imageURLs = items.map { $0.owner.avatarUrl }
 
                 // FIXME: No lazy loading yet.
-                return Effect<World, Input, EffectQueue, EffectID>(
+                return Effect<World, Input, EffectQueue, EffectID> { world in
                     Publishers.Sequence(sequence: imageURLs)
-                        .flatMap(maxPublishers: maxConcurrency) {
+                        .flatMap(maxPublishers: world.imageLoadMaxConcurrency) {
                             Just(Input._imageLoader(.requestImage(url: $0)))
                         }
                         .mapError(absurd)
-                )
+                }
 
             case let ._showError(message):
                 state.isLoading = false
@@ -122,16 +119,16 @@ extension GitHub
 
         return .reduce(.first, [
             effectMapping,
-            ImageLoader.effectMapping(scheduler: scheduler)
+            ImageLoader.effectMapping()
+                .contramapWorld { ImageLoader.World(urlSession: $0.urlSession) }
                 .transform(input: fromEnumProperty(\._imageLoader))
                 .transform(state: .init(lens: Lens(\.imageLoader)))
         ])
     }
 
     private static func githubRequest<_EffectID: Equatable, S: Scheduler>(
-        text: String,
-        scheduler: S
-    ) -> Effect<World, Input, EffectQueue, _EffectID>
+        text: String
+    ) -> Effect<World<S>, Input, EffectQueue, _EffectID>
     {
         guard !text.isEmpty else {
             return Effect(Just(Input._updateItems([])))
@@ -151,8 +148,8 @@ extension GitHub
         return Effect(queue: .request) { world in
             // Search request.
             // NOTE: `delaySubscription` + `EffectQueue.request` (`.latest` strategy) will work as `debounce`.
-            world.dataTaskPublisher(for: request)
-                .delaySubscription(for: .seconds(0.3), scheduler: scheduler)
+            world.urlSession.dataTaskPublisher(for: request)
+                .delaySubscription(for: world.searchRequestDelay, scheduler: world.scheduler)
                 .map { $0.data }
                 .decode(type: SearchRepositoryResponse.self, decoder: decoder)
                 .map(Input.init(response:))
@@ -160,13 +157,21 @@ extension GitHub
         }
     }
 
-    typealias EffectMapping = Harvester<Input, State>.EffectMapping<World, EffectQueue, EffectID>
+    typealias EffectMapping<S: Scheduler> = Harvester<Input, State>.EffectMapping<World<S>, EffectQueue, EffectID>
 
     typealias EffectQueue = CommonEffectQueue
 
     typealias EffectID = ImageLoader.EffectID
 
-    typealias World = URLSession
+    struct World<S: Scheduler>
+    {
+        let urlSession: URLSession
+        let scheduler: S
+
+        var searchRequestDelay: S.SchedulerTimeType.Stride
+
+        var imageLoadMaxConcurrency: Subscribers.Demand
+    }
 }
 
 // MARK: - Data Models

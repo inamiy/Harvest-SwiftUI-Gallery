@@ -22,9 +22,7 @@ extension ImageLoader
         var isRequesting: [URL: Bool] = [:]
     }
 
-    static func effectMapping<S: Scheduler>(
-        scheduler: S
-    ) -> EffectMapping
+    static func effectMapping() -> EffectMapping
     {
         EffectMapping { input, state in
             var state = state
@@ -43,7 +41,6 @@ extension ImageLoader
                     ) { world in
                         self.fetchImage(request: Request(url: url), world: world)
                             .compactMap { $0.map { Input._cacheImage(url: url, image: $0.image) } }
-
                     }
 
                     return (state, effect)
@@ -77,7 +74,10 @@ extension ImageLoader
         let url: URL
     }
 
-    typealias World = URLSession
+    struct World
+    {
+        let urlSession: URLSession
+    }
 }
 
 extension ImageLoader
@@ -100,7 +100,7 @@ extension ImageLoader
         print("===> fetchImage = \(request.url)")
 
         let urlRequest = URLRequest(url: request.url)
-        return world.dataTaskPublisher(for: urlRequest)
+        return world.urlSession.dataTaskPublisher(for: urlRequest)
             .map { UIImage(data: $0.data).map { Response(image: $0) } }
             .replaceError(with: nil)
             .eraseToAnyPublisher()

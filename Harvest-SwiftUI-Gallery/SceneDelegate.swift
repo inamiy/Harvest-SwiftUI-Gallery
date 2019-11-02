@@ -18,8 +18,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate
 
             let store = Store<DebugRoot.Input, DebugRoot.State>(
                 state: DebugRoot.State(Root.State(current: nil)),
-                mapping: DebugRoot.effectMapping(scheduler: DispatchQueue.main),
-                world: World.makeRealWorld()
+                mapping: DebugRoot.effectMapping(),
+                world: makeRealWorld()
             )
 
             window.rootViewController = UIHostingController(
