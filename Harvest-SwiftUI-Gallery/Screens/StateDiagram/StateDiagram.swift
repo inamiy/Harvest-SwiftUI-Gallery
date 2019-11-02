@@ -28,37 +28,45 @@ extension StateDiagram
         var description: String { return self.rawValue }
     }
 
-    static func effectMapping<S: Scheduler>(
-        scheduler: S
-    ) -> EffectMapping
+    static func effectMapping<S: Scheduler>() -> EffectMapping<S>
     {
         /// Sends `.loginOK` after delay, simulating async work during `.loggingIn`.
-        let loginOKProducer =
+        let loginOKEffect = Effect<S>(queue: .request) { world in
             Just(StateDiagram.Input.loginOK)
-                .delay(for: 1, scheduler: scheduler)
+                .delay(for: world.simulatedAsyncWorkDelay, scheduler: world.scheduler)
+        }
 
         /// Sends `.logoutOK` after delay, simulating async work during `.loggingOut`.
-        let logoutOKProducer =
+        let logoutOKEffect = Effect<S>(queue: .request) { world in
             Just(StateDiagram.Input.logoutOK)
-                .delay(for: 1, scheduler: scheduler)
+                .delay(for: world.simulatedAsyncWorkDelay, scheduler: world.scheduler)
+        }
 
         let canForceLogout: (State) -> Bool = [.loggingIn, .loggedIn].contains
 
-        let mappings: [StateDiagram.EffectMapping] = [
-            .login    | .loggedOut  => .loggingIn  | Effect(loginOKProducer, queue: .request),
+        let mappings: [StateDiagram.EffectMapping<S>] = [
+            .login    | .loggedOut  => .loggingIn  | loginOKEffect,
             .loginOK  | .loggingIn  => .loggedIn   | .empty,
-            .logout   | .loggedIn   => .loggingOut | Effect(logoutOKProducer, queue: .request),
+            .logout   | .loggedIn   => .loggingOut | logoutOKEffect,
             .logoutOK | .loggingOut => .loggedOut  | .empty,
 
-            .forceLogout | canForceLogout => .loggingOut | Effect(logoutOKProducer, queue: .request)
+            .forceLogout | canForceLogout => .loggingOut | logoutOKEffect
         ]
 
         return .reduce(.first, mappings)
     }
 
-    typealias EffectMapping = Harvester<Input, State>.EffectMapping<World, EffectQueue, Never>
+    typealias EffectMapping<S: Scheduler> = Harvester<Input, State>.EffectMapping<World<S>, EffectQueue, Never>
+
+    typealias Effect<S: Scheduler> = Harvest.Effect<World<S>, Input, EffectQueue, Never>
 
     typealias EffectQueue = CommonEffectQueue
 
-    typealias World = Void
+    struct World<S: Scheduler>
+    {
+        let scheduler: S
+
+        /// Simulated delay between ".loggingIn => .loggedIn" and ".loggingOut => .loggedOut".
+        var simulatedAsyncWorkDelay: S.SchedulerTimeType.Stride = .seconds(1)
+    }
 }

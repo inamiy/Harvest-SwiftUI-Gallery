@@ -31,23 +31,22 @@ extension DebugRoot
         }
     }
 
-    static func effectMapping<S: Scheduler>(
-        scheduler: S
-    ) -> EffectMapping
+    static func effectMapping<S: Scheduler>() -> EffectMapping<S>
     {
         return .reduce(.all, [
-            Root.effectMapping(scheduler: scheduler)
+            Root.effectMapping()
                 .transform(input: fromEnumProperty(\.timeTravel) >>> fromEnumProperty(\.inner))
                 .transform(state: .init(lens: .init(\.timeTravel) >>> .init(\.inner))),
 
             // Important: TimeTravel mapping needs to be called after `Root.effectMapping` (after `Root.State` changed).
-            TimeTravel.effectMapping(scheduler: scheduler)
+            TimeTravel.effectMapping()
+                .contramapWorld { TimeTravel.World(inner: $0, scheduler: $0.scheduler) }
                 .transform(input: fromEnumProperty(\.timeTravel))
                 .transform(state: .init(lens: .init(\.timeTravel))),
         ])
     }
 
-    typealias EffectMapping = Harvester<Input, State>.EffectMapping<World, EffectQueue, EffectID>
+    typealias EffectMapping<S: Scheduler> = Harvester<Input, State>.EffectMapping<World<S>, EffectQueue, EffectID>
     typealias EffectQueue = CommonEffectQueue
     typealias EffectID = Root.EffectID
     typealias World = Harvest_SwiftUI_Gallery.World
