@@ -40,30 +40,30 @@ extension Root
             previousEffectCancelMapping(),
 
             Counter.mapping.toEffectMapping()
-                .transform(input: fromEnumProperty(\.counter))
-                .transform(state: Lens(\.current) >>> some() >>> fromEnumProperty(\.counter)),
+                .transform(input: .fromEnum(\.counter))
+                .transform(state: Lens(\.current) >>> some() >>> .fromEnum(\.counter)),
 
             Todo.mapping.toEffectMapping()
-                .transform(input: fromEnumProperty(\.todo))
-                .transform(state: Lens(\.current) >>> some() >>> fromEnumProperty(\.todo))
+                .transform(input: .fromEnum(\.todo))
+                .transform(state: Lens(\.current) >>> some() >>> .fromEnum(\.todo))
                 .transform(id: .never),
 
             StateDiagram.effectMapping()
                 .contramapWorld { StateDiagram.World(scheduler: $0.scheduler) }
-                .transform(input: fromEnumProperty(\.stateDiagram))
-                .transform(state: Lens(\.current) >>> some() >>> fromEnumProperty(\.stateDiagram))
+                .transform(input: .fromEnum(\.stateDiagram))
+                .transform(state: Lens(\.current) >>> some() >>> .fromEnum(\.stateDiagram))
                 .transform(id: .never),
 
             Stopwatch.effectMapping()
                 .contramapWorld { $0.stopwatch }
-                .transform(input: fromEnumProperty(\.stopwatch))
-                .transform(state: Lens(\.current) >>> some() >>> fromEnumProperty(\.stopwatch))
+                .transform(input: .fromEnum(\.stopwatch))
+                .transform(state: Lens(\.current) >>> some() >>> .fromEnum(\.stopwatch))
                 .transform(id: Prism(tryGet: { $0.stopwatch }, inject: EffectID.stopwatch)),
 
             GitHub.effectMapping()
                 .contramapWorld { $0.github }
-                .transform(input: fromEnumProperty(\.github))
-                .transform(state: Lens(\.current) >>> some() >>> fromEnumProperty(\.github))
+                .transform(input: .fromEnum(\.github))
+                .transform(state: Lens(\.current) >>> some() >>> .fromEnum(\.github))
                 .transform(id: Prism(tryGet: { $0.github }, inject: EffectID.github)),
         ])
     }
