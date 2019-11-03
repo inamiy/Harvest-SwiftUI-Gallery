@@ -23,6 +23,12 @@ struct GitHubView: View
                         .onTapGesture {
                             self.store.send(.tapRow(at: index))
                         }
+                        .onAppear {
+                            self.store.send(.requestImage(at: index))
+                        }
+                        .onDisappear {
+                            self.store.send(.cancelImage(at: index))
+                        }
                 }
             }
             .sheet(isPresented: self.store.$state.isWebViewPresented) {
@@ -89,7 +95,6 @@ struct GitHubView: View
                     .frame(width: 64, height: 64)
                     .clipShape(Circle())
                     .overlay(Circle().stroke(Color.black, lineWidth: 1))
-
             }
             .else {
                 // FIXME: Improve this emptiness, where `EmptyView` or `Spacer` results differently.

@@ -21,6 +21,8 @@ extension GitHub
         case tapRow(at: Int)
         case dismiss
 
+        case requestImage(at: Int)
+        case cancelImage(at: Int)
         case _imageLoader(ImageLoader.Input)
 
         init(response: SearchRepositoryResponse)
@@ -84,21 +86,7 @@ extension GitHub
             case let ._updateItems(items):
                 state.items = items
                 state.isLoading = false
-
-                guard !items.isEmpty else {
-                    return .empty
-                }
-
-                let imageURLs = items.map { $0.owner.avatarUrl }
-
-                // FIXME: No lazy loading yet.
-                return Effect<World, Input, EffectQueue, EffectID> { world in
-                    Publishers.Sequence(sequence: imageURLs)
-                        .flatMap(maxPublishers: world.imageLoadMaxConcurrency) {
-                            Just(Input._imageLoader(.requestImage(url: $0)))
-                        }
-                        .mapError(absurd)
-                }
+                return .empty
 
             case let ._showError(message):
                 state.isLoading = false
@@ -109,6 +97,14 @@ extension GitHub
 
             case .dismiss:
                 state.selectedIndex = nil
+
+            case let .requestImage(index):
+                guard let imageURL = state.items[safe: index]?.owner.avatarUrl else { return nil }
+                return Effect(Just(Input._imageLoader(.requestImage(url: imageURL))))
+
+            case let .cancelImage(index):
+                guard let imageURL = state.items[safe: index]?.owner.avatarUrl else { return nil }
+                return Effect(Just(Input._imageLoader(.cancelRequest(url: imageURL))))
 
             case ._imageLoader:
                 return nil
@@ -169,8 +165,6 @@ extension GitHub
         let scheduler: S
 
         var searchRequestDelay: S.SchedulerTimeType.Stride
-
-        var imageLoadMaxConcurrency: Subscribers.Demand
     }
 }
 

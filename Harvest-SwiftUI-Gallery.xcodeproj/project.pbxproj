@@ -13,6 +13,7 @@
 		1F3CFDAF235B89250088C968 /* IfLetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3CFDAE235B89250088C968 /* IfLetView.swift */; };
 		1F3CFDB1235B968E0088C968 /* IfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3CFDB0235B968E0088C968 /* IfView.swift */; };
 		1F4DAA29235E6DC7003EAFE1 /* Root.State.Current.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4DAA28235E6DC7003EAFE1 /* Root.State.Current.swift */; };
+		1F5786A4236EAD0200E40A8D /* Collection+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5786A3236EAD0200E40A8D /* Collection+Helper.swift */; };
 		1F5801602363E6500085A6A1 /* DebugRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F58015F2363E6500085A6A1 /* DebugRoot.swift */; };
 		1F5801622363FAE90085A6A1 /* DebugRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5801612363FAE90085A6A1 /* DebugRootView.swift */; };
 		1F58869F2354A3310052A690 /* TodoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F58869C2354A3310052A690 /* TodoView.swift */; };
@@ -74,6 +75,7 @@
 		1F3CFDAE235B89250088C968 /* IfLetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IfLetView.swift; sourceTree = "<group>"; };
 		1F3CFDB0235B968E0088C968 /* IfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IfView.swift; sourceTree = "<group>"; };
 		1F4DAA28235E6DC7003EAFE1 /* Root.State.Current.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Root.State.Current.swift; sourceTree = "<group>"; };
+		1F5786A3236EAD0200E40A8D /* Collection+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Helper.swift"; sourceTree = "<group>"; };
 		1F58015F2363E6500085A6A1 /* DebugRoot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugRoot.swift; sourceTree = "<group>"; };
 		1F5801612363FAE90085A6A1 /* DebugRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugRootView.swift; sourceTree = "<group>"; };
 		1F58869C2354A3310052A690 /* TodoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoView.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				1F199767235AC81300B4F99C /* Either.swift */,
+				1F5786A3236EAD0200E40A8D /* Collection+Helper.swift */,
 				1F63A0A3235B67C8006B4F83 /* Combine+DelaySubscription.swift */,
 				1F63A0A5235B68EC006B4F83 /* SwiftUI+Helper.swift */,
 				1F91AB8A235CBD310054CE37 /* DateUtil.swift */,
@@ -396,6 +399,7 @@
 				1FE19DB6234AB7E500C7B991 /* CommonEffectQueue.swift in Sources */,
 				1F5886A12354A3310052A690 /* TodoExample.swift in Sources */,
 				1F63A0B0235B7D7F006B4F83 /* Functions.swift in Sources */,
+				1F5786A4236EAD0200E40A8D /* Collection+Helper.swift in Sources */,
 				1FC021782352740900C117F9 /* AppView.swift in Sources */,
 				1F2F06102356E5F400211CF3 /* WebView.swift in Sources */,
 				1FA2BD78235633F90015C530 /* GitHub.swift in Sources */,

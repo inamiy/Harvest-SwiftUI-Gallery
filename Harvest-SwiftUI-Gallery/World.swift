@@ -13,8 +13,7 @@ struct World<S: Scheduler>
         GitHub.World(
             urlSession: urlSession,
             scheduler: scheduler,
-            searchRequestDelay: .seconds(0.3),
-            imageLoadMaxConcurrency: .max(3)
+            searchRequestDelay: .seconds(0.3)
         )
     }
 
