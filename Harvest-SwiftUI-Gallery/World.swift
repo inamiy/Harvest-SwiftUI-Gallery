@@ -6,6 +6,7 @@ struct World<S: Scheduler>
 {
     let urlSession: URLSession
     let scheduler: S
+    let fileScheduler: S
     let getDate: () -> Date
 
     var github: GitHub.World<S>
@@ -29,12 +30,10 @@ struct World<S: Scheduler>
 
 func makeRealWorld() -> World<DispatchQueue>
 {
-    let urlSession = URLSession.shared
-    let scheduler = DispatchQueue.main
-
-    return World<DispatchQueue>(
-        urlSession: urlSession,
-        scheduler: scheduler,
+    World<DispatchQueue>(
+        urlSession: URLSession.shared,
+        scheduler: DispatchQueue.main,
+        fileScheduler: DispatchQueue(label: "fileScheduler"),
         getDate: { Date() }
     )
 }

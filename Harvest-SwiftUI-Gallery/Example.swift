@@ -33,4 +33,5 @@ let allExamples: [Example] = [
     StateDiagramExample(),
     StopwatchExample(),
     GitHubExample(),
+    LifeGameExample(),
 ]

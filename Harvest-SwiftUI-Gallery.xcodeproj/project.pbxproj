@@ -13,11 +13,14 @@
 		1F3CFDAF235B89250088C968 /* IfLetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3CFDAE235B89250088C968 /* IfLetView.swift */; };
 		1F3CFDB1235B968E0088C968 /* IfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3CFDB0235B968E0088C968 /* IfView.swift */; };
 		1F4DAA29235E6DC7003EAFE1 /* Root.State.Current.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4DAA28235E6DC7003EAFE1 /* Root.State.Current.swift */; };
+		1F5786A9236EC64800E40A8D /* LifeGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5786A6236EC64800E40A8D /* LifeGame.swift */; };
+		1F5786AA236EC64800E40A8D /* LifeGameExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5786A7236EC64800E40A8D /* LifeGameExample.swift */; };
 		1F5801602363E6500085A6A1 /* DebugRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F58015F2363E6500085A6A1 /* DebugRoot.swift */; };
 		1F5801622363FAE90085A6A1 /* DebugRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5801612363FAE90085A6A1 /* DebugRootView.swift */; };
 		1F58869F2354A3310052A690 /* TodoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F58869C2354A3310052A690 /* TodoView.swift */; };
 		1F5886A02354A3310052A690 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F58869D2354A3310052A690 /* Todo.swift */; };
 		1F5886A12354A3310052A690 /* TodoExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F58869E2354A3310052A690 /* TodoExample.swift */; };
+		1F5F9B5C237A373600D10A4B /* GameOfLife.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F5F9B5B237A370E00D10A4B /* GameOfLife.framework */; };
 		1F63A0A4235B67C8006B4F83 /* Combine+DelaySubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F63A0A3235B67C8006B4F83 /* Combine+DelaySubscription.swift */; };
 		1F63A0A6235B68EC006B4F83 /* SwiftUI+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F63A0A5235B68EC006B4F83 /* SwiftUI+Helper.swift */; };
 		1F63A0B0235B7D7F006B4F83 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F63A0AF235B7D7F006B4F83 /* Functions.swift */; };
@@ -52,7 +55,25 @@
 		1FE19DB2234A9F0500C7B991 /* HarvestOptics in Frameworks */ = {isa = PBXBuildFile; productRef = 1FE19DB1234A9F0500C7B991 /* HarvestOptics */; };
 		1FE19DB6234AB7E500C7B991 /* CommonEffectQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE19DB5234AB7E500C7B991 /* CommonEffectQueue.swift */; };
 		1FFAE9B42369EA1700C5767A /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFAE9B32369EA1700C5767A /* World.swift */; };
+		1FFE60A2237A4BFB0043F9F0 /* GameOfLife.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1F5F9B5B237A370E00D10A4B /* GameOfLife.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1F5F9B58237A370E00D10A4B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1F5F9B53237A370E00D10A4B /* GameOfLife.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1FA37F0B2374782E004ABA30;
+			remoteInfo = GameOfLifeApp;
+		};
+		1F5F9B5A237A370E00D10A4B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1F5F9B53237A370E00D10A4B /* GameOfLife.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1FA37F2E237479E7004ABA30;
+			remoteInfo = GameOfLife;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		1FC021312349D6510036C796 /* Embed Frameworks */ = {
@@ -61,6 +82,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				1FFE60A2237A4BFB0043F9F0 /* GameOfLife.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -74,11 +96,16 @@
 		1F3CFDAE235B89250088C968 /* IfLetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IfLetView.swift; sourceTree = "<group>"; };
 		1F3CFDB0235B968E0088C968 /* IfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IfView.swift; sourceTree = "<group>"; };
 		1F4DAA28235E6DC7003EAFE1 /* Root.State.Current.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Root.State.Current.swift; sourceTree = "<group>"; };
+		1F5786A6236EC64800E40A8D /* LifeGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifeGame.swift; sourceTree = "<group>"; };
+		1F5786A7236EC64800E40A8D /* LifeGameExample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifeGameExample.swift; sourceTree = "<group>"; };
 		1F58015F2363E6500085A6A1 /* DebugRoot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugRoot.swift; sourceTree = "<group>"; };
 		1F5801612363FAE90085A6A1 /* DebugRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugRootView.swift; sourceTree = "<group>"; };
 		1F58869C2354A3310052A690 /* TodoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoView.swift; sourceTree = "<group>"; };
 		1F58869D2354A3310052A690 /* Todo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
 		1F58869E2354A3310052A690 /* TodoExample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoExample.swift; sourceTree = "<group>"; };
+		1F5BB6362373D2840055AD5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1F5BB63A2373D2A00055AD5E /* GameOfLife */ = {isa = PBXFileReference; lastKnownFileType = folder; path = GameOfLife; sourceTree = "<group>"; };
+		1F5F9B53237A370E00D10A4B /* GameOfLife.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GameOfLife.xcodeproj; path = GameOfLife/GameOfLife.xcodeproj; sourceTree = "<group>"; };
 		1F63A0A3235B67C8006B4F83 /* Combine+DelaySubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Combine+DelaySubscription.swift"; sourceTree = "<group>"; };
 		1F63A0A5235B68EC006B4F83 /* SwiftUI+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwiftUI+Helper.swift"; sourceTree = "<group>"; };
 		1F63A0AF235B7D7F006B4F83 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
@@ -119,6 +146,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F5F9B5C237A373600D10A4B /* GameOfLife.framework in Frameworks */,
 				1FE19DB2234A9F0500C7B991 /* HarvestOptics in Frameworks */,
 				1FE19DB0234A9F0200C7B991 /* HarvestStore in Frameworks */,
 				1FA3E28C2349BD1A00F4A1CF /* Harvest in Frameworks */,
@@ -142,6 +170,15 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		1F5786A5236EC64800E40A8D /* LifeGame */ = {
+			isa = PBXGroup;
+			children = (
+				1F5786A7236EC64800E40A8D /* LifeGameExample.swift */,
+				1F5786A6236EC64800E40A8D /* LifeGame.swift */,
+			);
+			path = LifeGame;
+			sourceTree = "<group>";
+		};
 		1F58869B2354A3310052A690 /* Todo */ = {
 			isa = PBXGroup;
 			children = (
@@ -150,6 +187,32 @@
 				1F58869C2354A3310052A690 /* TodoView.swift */,
 			);
 			path = Todo;
+			sourceTree = "<group>";
+		};
+		1F5BB6352373D2840055AD5E /* GameOfLife */ = {
+			isa = PBXGroup;
+			children = (
+				1F5BB63A2373D2A00055AD5E /* GameOfLife */,
+				1F5BB6362373D2840055AD5E /* Info.plist */,
+			);
+			path = GameOfLife;
+			sourceTree = "<group>";
+		};
+		1F5F97DA237A370800D10A4B /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				1F5F9B53237A370E00D10A4B /* GameOfLife.xcodeproj */,
+			);
+			path = Vendor;
+			sourceTree = "<group>";
+		};
+		1F5F9B54237A370E00D10A4B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1F5F9B59237A370E00D10A4B /* GameOfLifeApp.app */,
+				1F5F9B5B237A370E00D10A4B /* GameOfLife.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		1F91AB83235CB25D0054CE37 /* Stopwatch */ = {
@@ -205,7 +268,9 @@
 		1FD96F7E22E00A56005DBB61 = {
 			isa = PBXGroup;
 			children = (
+				1F5F97DA237A370800D10A4B /* Vendor */,
 				1FD96F8922E00A56005DBB61 /* Harvest-SwiftUI-Gallery */,
+				1F5BB6352373D2840055AD5E /* GameOfLife */,
 				1FD96F8822E00A56005DBB61 /* Products */,
 				1FD96FA322E00AF2005DBB61 /* Frameworks */,
 			);
@@ -268,6 +333,7 @@
 				1FD96FD322E0397E005DBB61 /* StateDiagram */,
 				1F91AB83235CB25D0054CE37 /* Stopwatch */,
 				1FA2BD72235633F90015C530 /* GitHub */,
+				1F5786A5236EC64800E40A8D /* LifeGame */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -338,12 +404,35 @@
 			);
 			productRefGroup = 1FD96F8822E00A56005DBB61 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 1F5F9B54237A370E00D10A4B /* Products */;
+					ProjectRef = 1F5F9B53237A370E00D10A4B /* GameOfLife.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				1FD96F8622E00A56005DBB61 /* Harvest-SwiftUI-Gallery */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		1F5F9B59237A370E00D10A4B /* GameOfLifeApp.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = GameOfLifeApp.app;
+			remoteRef = 1F5F9B58237A370E00D10A4B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		1F5F9B5B237A370E00D10A4B /* GameOfLife.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = GameOfLife.framework;
+			remoteRef = 1F5F9B5A237A370E00D10A4B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		1FD96F8522E00A56005DBB61 /* Resources */ = {
@@ -382,6 +471,7 @@
 				1F91AB89235CB25D0054CE37 /* Stopwatch.swift in Sources */,
 				1FD7A6C622E38342005130FB /* IntroView.swift in Sources */,
 				1FD7A6C122E380EF005130FB /* StateDiagramView.swift in Sources */,
+				1F5786AA236EC64800E40A8D /* LifeGameExample.swift in Sources */,
 				1FA2BD76235633F90015C530 /* GitHubExample.swift in Sources */,
 				1F91AB87235CB25D0054CE37 /* StopwatchExample.swift in Sources */,
 				1F70A1A62358D2E80028624C /* ImageLoader.swift in Sources */,
@@ -398,6 +488,7 @@
 				1F63A0B0235B7D7F006B4F83 /* Functions.swift in Sources */,
 				1FC021782352740900C117F9 /* AppView.swift in Sources */,
 				1F2F06102356E5F400211CF3 /* WebView.swift in Sources */,
+				1F5786A9236EC64800E40A8D /* LifeGame.swift in Sources */,
 				1FA2BD78235633F90015C530 /* GitHub.swift in Sources */,
 				1FC021AE2352C4C600C117F9 /* IntroExample.swift in Sources */,
 				1F91AB8B235CBD310054CE37 /* DateUtil.swift in Sources */,

@@ -1,0 +1,3 @@
+[submodule "Vendor/GameOfLife"]
+	path = Vendor/GameOfLife
+	url = https://github.com/inamiy/Harvest-SwiftUI-GameOfLife

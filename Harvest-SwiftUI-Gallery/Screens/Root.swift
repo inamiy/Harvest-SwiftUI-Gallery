@@ -18,6 +18,7 @@ extension Root
         case stateDiagram(StateDiagram.Input)
         case todo(Todo.Input)
         case github(GitHub.Input)
+        case lifegame(LifeGame.Input)
     }
 
     struct State
@@ -36,7 +37,7 @@ extension Root
 
     static func effectMapping<S: Scheduler>() -> EffectMapping<S>
     {
-        return .reduce(.all, [
+        .reduce(.all, [
             previousEffectCancelMapping(),
 
             Counter.mapping.toEffectMapping()
@@ -65,6 +66,13 @@ extension Root
                 .transform(input: .fromEnum(\.github))
                 .transform(state: Lens(\.current) >>> some() >>> .fromEnum(\.github))
                 .transform(id: Prism(tryGet: { $0.github }, inject: EffectID.github)),
+
+            LifeGame.effectMapping()
+                .contramapWorld { .init(fileScheduler: $0.fileScheduler) }
+                .transform(input: .fromEnum(\.lifegame))
+                .transform(state: Lens(\.current) >>> some() >>> .fromEnum(\.lifegame))
+                .transform(id: Prism(tryGet: { $0.lifegame }, inject: EffectID.lifegame))
+                .mapQueue { _ in .defaultEffectQueue }
         ])
     }
 
@@ -99,6 +107,7 @@ extension Root
     {
         case stopwatch(Stopwatch.EffectID)
         case github(GitHub.EffectID)
+        case lifegame(LifeGame.EffectID)
 
         var stopwatch: Stopwatch.EffectID?
         {
@@ -109,6 +118,12 @@ extension Root
         var github: GitHub.EffectID?
         {
             guard case let .github(value) = self else { return nil }
+            return value
+        }
+
+        var lifegame: LifeGame.EffectID?
+        {
+            guard case let .lifegame(value) = self else { return nil }
             return value
         }
     }
@@ -189,6 +204,18 @@ extension Root.Input
         set {
             guard case .github = self, let newValue = newValue else { return }
             self = .github(newValue)
+        }
+    }
+
+    var lifegame: LifeGame.Input?
+    {
+        get {
+            guard case let .lifegame(value) = self else { return nil }
+            return value
+        }
+        set {
+            guard case .lifegame = self, let newValue = newValue else { return }
+            self = .lifegame(newValue)
         }
     }
 }
