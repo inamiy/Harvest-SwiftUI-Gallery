@@ -9,6 +9,7 @@ extension Root.State
         case stateDiagram(StateDiagram.State)
         case todo(Todo.State)
         case github(GitHub.State)
+        case lifegame(LifeGame.State)
 
         var example: Example
         {
@@ -19,6 +20,7 @@ extension Root.State
             case .stateDiagram: return StateDiagramExample()
             case .todo:         return TodoExample()
             case .github:       return GitHubExample()
+            case .lifegame:     return LifeGameExample()
             }
         }
     }
@@ -106,6 +108,18 @@ extension Root.State.Current
         set {
             guard case .github = self, let newValue = newValue else { return }
             self = .github(newValue)
+        }
+    }
+
+    var lifegame: LifeGame.State?
+    {
+        get {
+            guard case let .lifegame(value) = self else { return nil }
+            return value
+        }
+        set {
+            guard case .lifegame = self, let newValue = newValue else { return }
+            self = .lifegame(newValue)
         }
     }
 }
