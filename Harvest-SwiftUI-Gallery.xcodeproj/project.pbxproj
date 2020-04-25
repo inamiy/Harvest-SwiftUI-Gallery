@@ -33,7 +33,6 @@
 		1FA2BD77235633F90015C530 /* GitHubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA2BD74235633F90015C530 /* GitHubView.swift */; };
 		1FA2BD78235633F90015C530 /* GitHub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA2BD75235633F90015C530 /* GitHub.swift */; };
 		1FA2BD7B2356496F0015C530 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA2BD7A2356496F0015C530 /* ActivityIndicatorView.swift */; };
-		1FA3E28C2349BD1A00F4A1CF /* Harvest in Frameworks */ = {isa = PBXBuildFile; productRef = 1FA3E28B2349BD1A00F4A1CF /* Harvest */; };
 		1FC021782352740900C117F9 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC021772352740900C117F9 /* AppView.swift */; };
 		1FC0218723529DEE00C117F9 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC0218523529DEE00C117F9 /* CounterView.swift */; };
 		1FC0218823529DEE00C117F9 /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC0218623529DEE00C117F9 /* Counter.swift */; };
@@ -51,8 +50,6 @@
 		1FD96F9722E00A58005DBB61 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FD96F9522E00A58005DBB61 /* LaunchScreen.storyboard */; };
 		1FD96FD522E0397E005DBB61 /* Root.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD96FD222E0397E005DBB61 /* Root.swift */; };
 		1FD96FD622E0397E005DBB61 /* StateDiagram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD96FD422E0397E005DBB61 /* StateDiagram.swift */; };
-		1FE19DB0234A9F0200C7B991 /* HarvestStore in Frameworks */ = {isa = PBXBuildFile; productRef = 1FE19DAF234A9F0200C7B991 /* HarvestStore */; };
-		1FE19DB2234A9F0500C7B991 /* HarvestOptics in Frameworks */ = {isa = PBXBuildFile; productRef = 1FE19DB1234A9F0500C7B991 /* HarvestOptics */; };
 		1FE19DB6234AB7E500C7B991 /* CommonEffectQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE19DB5234AB7E500C7B991 /* CommonEffectQueue.swift */; };
 		1FFAE9B42369EA1700C5767A /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFAE9B32369EA1700C5767A /* World.swift */; };
 		1FFE60A2237A4BFB0043F9F0 /* GameOfLife.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1F5F9B5B237A370E00D10A4B /* GameOfLife.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -147,9 +144,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F5F9B5C237A373600D10A4B /* GameOfLife.framework in Frameworks */,
-				1FE19DB2234A9F0500C7B991 /* HarvestOptics in Frameworks */,
-				1FE19DB0234A9F0200C7B991 /* HarvestStore in Frameworks */,
-				1FA3E28C2349BD1A00F4A1CF /* Harvest in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,9 +361,6 @@
 			);
 			name = "Harvest-SwiftUI-Gallery";
 			packageProductDependencies = (
-				1FA3E28B2349BD1A00F4A1CF /* Harvest */,
-				1FE19DAF234A9F0200C7B991 /* HarvestStore */,
-				1FE19DB1234A9F0500C7B991 /* HarvestOptics */,
 			);
 			productName = "Harvest-SwiftUI-Gallery";
 			productReference = 1FD96F8722E00A56005DBB61 /* Harvest-SwiftUI-Gallery.app */;
@@ -708,25 +699,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		1FA3E28B2349BD1A00F4A1CF /* Harvest */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1FA3E28A2349BD1A00F4A1CF /* XCRemoteSwiftPackageReference "Harvest" */;
-			productName = Harvest;
-		};
 		1FE19DAD234A9D6100C7B991 /* Harvest */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1FA3E28A2349BD1A00F4A1CF /* XCRemoteSwiftPackageReference "Harvest" */;
 			productName = Harvest;
-		};
-		1FE19DAF234A9F0200C7B991 /* HarvestStore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1FA3E28A2349BD1A00F4A1CF /* XCRemoteSwiftPackageReference "Harvest" */;
-			productName = HarvestStore;
-		};
-		1FE19DB1234A9F0500C7B991 /* HarvestOptics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1FA3E28A2349BD1A00F4A1CF /* XCRemoteSwiftPackageReference "Harvest" */;
-			productName = HarvestOptics;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
