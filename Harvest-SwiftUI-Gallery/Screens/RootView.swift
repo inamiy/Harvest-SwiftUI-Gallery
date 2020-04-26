@@ -40,6 +40,9 @@ struct RootView: View
                 }
                 .navigationBarTitle(Text("🌾 Harvest Gallery 🖼️"), displayMode: .large)
             }
+            // Workaround for macOS Catalyst.
+            // Related: https://twitter.com/paulcolton/status/1251162315291934720
+            .navigationViewStyle(StackNavigationViewStyle())
         }
     }
 }
