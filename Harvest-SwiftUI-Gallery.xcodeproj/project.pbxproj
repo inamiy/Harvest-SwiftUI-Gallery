@@ -132,6 +132,7 @@
 		1FD96F9322E00A58005DBB61 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1FD96F9622E00A58005DBB61 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1FD96F9822E00A58005DBB61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1FD96FAC24549F8500FE9206 /* Harvest-SwiftUI-Gallery.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Harvest-SwiftUI-Gallery.entitlements"; sourceTree = "<group>"; };
 		1FD96FD222E0397E005DBB61 /* Root.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Root.swift; sourceTree = "<group>"; };
 		1FD96FD422E0397E005DBB61 /* StateDiagram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateDiagram.swift; sourceTree = "<group>"; };
 		1FE19DB5234AB7E500C7B991 /* CommonEffectQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonEffectQueue.swift; sourceTree = "<group>"; };
@@ -281,6 +282,7 @@
 		1FD96F8922E00A56005DBB61 /* Harvest-SwiftUI-Gallery */ = {
 			isa = PBXGroup;
 			children = (
+				1FD96FAC24549F8500FE9206 /* Harvest-SwiftUI-Gallery.entitlements */,
 				1FD96F8A22E00A56005DBB61 /* AppDelegate.swift */,
 				1FD96F8C22E00A56005DBB61 /* SceneDelegate.swift */,
 				1FC0218B2352AEAE00C117F9 /* Example.swift */,
@@ -627,6 +629,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Harvest-SwiftUI-Gallery/Harvest-SwiftUI-Gallery.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "Harvest-SwiftUI-Gallery/Preview\\ Content";
 				DEVELOPMENT_TEAM = UMBZ5WL247;
@@ -638,6 +641,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.inamiy.Harvest-SwiftUI-Gallery";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -648,6 +652,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Harvest-SwiftUI-Gallery/Harvest-SwiftUI-Gallery.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "Harvest-SwiftUI-Gallery/Preview\\ Content";
 				DEVELOPMENT_TEAM = UMBZ5WL247;
@@ -659,6 +664,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.inamiy.Harvest-SwiftUI-Gallery";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
