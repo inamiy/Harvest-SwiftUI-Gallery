@@ -5,20 +5,30 @@ import HarvestStore
 struct DebugRootView: View
 {
     private let store: Store<DebugRoot.Input, DebugRoot.State>.Proxy
+    private let usesTimeTravel: Bool
 
-    init(store: Store<DebugRoot.Input, DebugRoot.State>.Proxy)
+    init(store: Store<DebugRoot.Input, DebugRoot.State>.Proxy, usesTimeTravel: Bool = true)
     {
         self.store = store
+        self.usesTimeTravel = usesTimeTravel
     }
 
     var body: some View
     {
-        VStack {
-            RootView(store: self.store.timeTravel.inner.contramapInput { DebugRoot.Input.timeTravel(.inner($0)) })
+        let rootView = RootView(
+            store: self.store.timeTravel.inner
+                .contramapInput { DebugRoot.Input.timeTravel(.inner($0)) }
+        )
 
-            Divider()
-
-            debugBottomView()
+        return If(self.usesTimeTravel) {
+            VStack {
+                rootView
+                Divider()
+                self.debugBottomView()
+            }
+        }
+        .else {
+            rootView
         }
     }
 

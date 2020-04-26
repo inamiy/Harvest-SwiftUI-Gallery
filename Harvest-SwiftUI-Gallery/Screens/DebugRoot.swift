@@ -31,19 +31,26 @@ extension DebugRoot
         }
     }
 
-    static func effectMapping<S: Scheduler>() -> EffectMapping<S>
+    static func effectMapping<S: Scheduler>(usesTimeTravel: Bool = true) -> EffectMapping<S>
     {
-        return .reduce(.all, [
-            Root.effectMapping()
-                .transform(input: .fromEnum(\.timeTravel) >>> .fromEnum(\.inner))
-                .transform(state: .init(lens: .init(\.timeTravel) >>> .init(\.inner))),
+        let rootMapping: EffectMapping<S> = Root.effectMapping()
+            .transform(input: .fromEnum(\.timeTravel) >>> .fromEnum(\.inner))
+            .transform(state: .init(lens: .init(\.timeTravel) >>> .init(\.inner)))
 
-            // Important: TimeTravel mapping needs to be called after `Root.effectMapping` (after `Root.State` changed).
-            TimeTravel.effectMapping()
-                .contramapWorld { TimeTravel.World(inner: $0, scheduler: $0.scheduler) }
-                .transform(input: .fromEnum(\.timeTravel))
-                .transform(state: .init(lens: .init(\.timeTravel))),
-        ])
+        if usesTimeTravel {
+            return .reduce(.all, [
+                rootMapping,
+
+                // Important: TimeTravel mapping needs to be called after `Root.effectMapping` (after `Root.State` changed).
+                TimeTravel.effectMapping()
+                    .contramapWorld { TimeTravel.World(inner: $0, scheduler: $0.scheduler) }
+                    .transform(input: .fromEnum(\.timeTravel))
+                    .transform(state: .init(lens: .init(\.timeTravel))),
+            ])
+        }
+        else {
+            return rootMapping
+        }
     }
 
     typealias EffectMapping<S: Scheduler> = Harvester<Input, State>.EffectMapping<World<S>, EffectQueue, EffectID>

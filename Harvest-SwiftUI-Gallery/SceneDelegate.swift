@@ -18,12 +18,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate
 
             let store = Store<DebugRoot.Input, DebugRoot.State>(
                 state: DebugRoot.State(Root.State(current: nil)),
-                mapping: DebugRoot.effectMapping(),
+                mapping: DebugRoot.effectMapping(usesTimeTravel: usesTimeTravel),
                 world: makeRealWorld()
             )
 
             window.rootViewController = UIHostingController(
-                rootView: AppView(store: store)
+                rootView: AppView(store: store, usesTimeTravel: usesTimeTravel)
             )
 
             self.window = window
@@ -31,3 +31,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate
         }
     }
 }
+
+private let usesTimeTravel: Bool = true

@@ -10,14 +10,17 @@ struct AppView: View
     @ObservedObject
     private var store: Store<DebugRoot.Input, DebugRoot.State>
 
-    init(store: Store<DebugRoot.Input, DebugRoot.State>)
+    private let usesTimeTravel: Bool
+
+    init(store: Store<DebugRoot.Input, DebugRoot.State>, usesTimeTravel: Bool = true)
     {
         self.store = store
+        self.usesTimeTravel = usesTimeTravel
     }
 
     var body: some View
     {
         // IMPORTANT: Pass `Store.Proxy` to children.
-        DebugRootView(store: self.store.proxy)
+        DebugRootView(store: self.store.proxy, usesTimeTravel: self.usesTimeTravel)
     }
 }
