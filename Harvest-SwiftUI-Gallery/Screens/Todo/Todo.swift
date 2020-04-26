@@ -67,7 +67,11 @@ extension Todo
                 state.isEditing.toggle()
 
             case let .delete(indexes):
-                state.items.remove(atOffsets: indexes)
+                let visibleIDs = indexes.map { state.visibleItems[$0].id }
+                let itemIndexes = state.items.enumerated()
+                    .filter { visibleIDs.contains($0.element.id) }
+                    .map { $0.offset }
+                state.items.remove(atOffsets: IndexSet(itemIndexes))
             }
         }
     }
