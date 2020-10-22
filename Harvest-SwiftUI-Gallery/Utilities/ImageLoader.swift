@@ -24,7 +24,7 @@ extension ImageLoader
 
     static func effectMapping() -> EffectMapping
     {
-        EffectMapping { input, state in
+        EffectMapping { input, state, world in
             var state = state
 
             switch input {
@@ -36,12 +36,10 @@ extension ImageLoader
                     state.isRequesting[url] = true
 
                     // Fetch & cache image.
-                    let effect = Effect<World, Input, CommonEffectQueue, EffectID>(
-                        id: EffectID(url: url)
-                    ) { world in
+                    let effect: Effect<Input, CommonEffectQueue, EffectID> =
                         self.fetchImage(request: Request(url: url), world: world)
-                            .compactMap { $0.map { Input._cacheImage(url: url, image: $0.image) } }
-                    }
+                        .compactMap { $0.map { Input._cacheImage(url: url, image: $0.image) } }
+                        .toEffect(id: EffectID(url: url))
 
                     return (state, effect)
                 }

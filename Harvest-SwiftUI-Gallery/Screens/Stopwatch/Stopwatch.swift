@@ -120,7 +120,7 @@ extension Stopwatch
 
     static func effectMapping<S: Scheduler>() -> EffectMapping<S>
     {
-        return .makeInout { input, state in
+        return .makeInout { input, state, world in
             switch (input, state.status) {
             case (.start, .idle):
                 state.status = .preparing(time: 0)
@@ -130,14 +130,15 @@ extension Stopwatch
                 // so always wrap date creation inside `Publisher` to maintain this whole scope as a pure function.
                 // Then, it can be replaced with a mocked effect for future improvements.
                 let getStartDate = DateUtil.getDate(next: Input._didStart)
-
-                return Effect(queue: .default, id: .getStartDate) { getStartDate($0.getDate) }
+                return getStartDate(world.getDate)
+                    .toEffect(queue: .default, id: .getStartDate)
 
             case let (.start, .paused(time)):
                 state.status = .preparing(time: time)
 
                 let getStartDate = DateUtil.getDate(next: Input._didStart)
-                return Effect(queue: .default, id: .getStartDate) { getStartDate($0.getDate) }
+                return getStartDate(world.getDate)
+                    .toEffect(queue: .default, id: .getStartDate)
 
             case let (._didStart(date), .preparing(time)):
                 state.status = .running(time: time, startDate: date, currentDate: date)
@@ -167,7 +168,7 @@ extension Stopwatch
 
     typealias EffectMapping<S: Scheduler> = Harvester<Input, State>.EffectMapping<World<S>, EffectQueue, EffectID>
 
-    typealias Effect<S: Scheduler> = Harvest.Effect<World<S>, Input, EffectQueue, EffectID>
+    typealias Effect = Harvest.Effect<Input, EffectQueue, EffectID>
 
     typealias EffectQueue = CommonEffectQueue
 
@@ -187,12 +188,11 @@ extension Stopwatch
 
 extension Stopwatch
 {
-    private static func timerEffect<S: Scheduler>(startDate: Date) -> Effect<S>
+    private static func timerEffect(startDate: Date) -> Effect
     {
-        let timer = Timer.publish(every: 0.01, tolerance: 0.01, on: .main, in: .common)
+        Timer.publish(every: 0.01, tolerance: 0.01, on: .main, in: .common)
             .autoconnect()
             .map { Input._update(start: startDate, current: $0) }
-
-        return Effect(timer, queue: .default, id: .timer)
+            .toEffect(queue: .default, id: .timer)
     }
 }

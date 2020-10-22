@@ -70,16 +70,16 @@ extension GitHub
 
     static func effectMapping<S: Scheduler>() -> EffectMapping<S>
     {
-        let effectMapping = EffectMapping<S>.makeInout { input, state in
+        let effectMapping = EffectMapping<S>.makeInout { input, state, world in
             switch input {
             case .onAppear:
                 state.isLoading = true
-                return githubRequest(text: state.searchText)
+                return githubRequest(text: state.searchText, world: world)
 
             case let .updateSearchText(text):
                 state.searchText = text
                 state.isLoading = !text.isEmpty
-                return githubRequest(text: text)
+                return githubRequest(text: text, world: world)
 
             case let ._updateItems(items):
                 state.items = items
@@ -92,13 +92,12 @@ extension GitHub
                 let imageURLs = items.map { $0.owner.avatarUrl }
 
                 // FIXME: No lazy loading yet.
-                return Effect<World, Input, EffectQueue, EffectID> { world in
-                    Publishers.Sequence(sequence: imageURLs)
-                        .flatMap(maxPublishers: world.imageLoadMaxConcurrency) {
-                            Just(Input._imageLoader(.requestImage(url: $0)))
-                        }
-                        .mapError(absurd)
-                }
+                return Publishers.Sequence(sequence: imageURLs)
+                    .flatMap(maxPublishers: world.imageLoadMaxConcurrency) {
+                        Just(Input._imageLoader(.requestImage(url: $0)))
+                    }
+                    .mapError(absurd)
+                    .toEffect()
 
             case let ._showError(message):
                 state.isLoading = false
@@ -127,8 +126,9 @@ extension GitHub
     }
 
     private static func githubRequest<_EffectID: Equatable, S: Scheduler>(
-        text: String
-    ) -> Effect<World<S>, Input, EffectQueue, _EffectID>
+        text: String,
+        world: World<S>
+    ) -> Effect<Input, EffectQueue, _EffectID>
     {
         guard !text.isEmpty else {
             return Effect(Just(Input._updateItems([])))
@@ -145,16 +145,15 @@ extension GitHub
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
 
-        return Effect(queue: .request) { world in
-            // Search request.
-            // NOTE: `delaySubscription` + `EffectQueue.request` (`.latest` strategy) will work as `debounce`.
-            world.urlSession.dataTaskPublisher(for: request)
-                .delaySubscription(for: world.searchRequestDelay, scheduler: world.scheduler)
-                .map { $0.data }
-                .decode(type: SearchRepositoryResponse.self, decoder: decoder)
-                .map(Input.init(response:))
-                .catch { Result<Input, Never>.Publisher(Input._showError(message: $0.localizedDescription)) }
-        }
+        // Search request.
+        // NOTE: `delaySubscription` + `EffectQueue.request` (`.latest` strategy) will work as `debounce`.
+        return world.urlSession.dataTaskPublisher(for: request)
+            .delaySubscription(for: world.searchRequestDelay, scheduler: world.scheduler)
+            .map { $0.data }
+            .decode(type: SearchRepositoryResponse.self, decoder: decoder)
+            .map(Input.init(response:))
+            .catch { Result<Input, Never>.Publisher(Input._showError(message: $0.localizedDescription)) }
+            .toEffect(queue: .request)
     }
 
     typealias EffectMapping<S: Scheduler> = Harvester<Input, State>.EffectMapping<World<S>, EffectQueue, EffectID>

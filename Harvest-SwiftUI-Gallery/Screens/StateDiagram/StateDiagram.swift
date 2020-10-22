@@ -31,15 +31,17 @@ extension StateDiagram
     static func effectMapping<S: Scheduler>() -> EffectMapping<S>
     {
         /// Sends `.loginOK` after delay, simulating async work during `.loggingIn`.
-        let loginOKEffect = Effect<S>(queue: .request) { world in
+        let loginOKEffect = { (world: World<S>) -> Effect in
             Just(StateDiagram.Input.loginOK)
                 .delay(for: world.simulatedAsyncWorkDelay, scheduler: world.scheduler)
+                .toEffect(queue: .request)
         }
 
         /// Sends `.logoutOK` after delay, simulating async work during `.loggingOut`.
-        let logoutOKEffect = Effect<S>(queue: .request) { world in
+        let logoutOKEffect = { (world: World<S>) -> Effect in
             Just(StateDiagram.Input.logoutOK)
                 .delay(for: world.simulatedAsyncWorkDelay, scheduler: world.scheduler)
+                .toEffect(queue: .request)
         }
 
         let canForceLogout: (State) -> Bool = [.loggingIn, .loggedIn].contains
@@ -58,7 +60,7 @@ extension StateDiagram
 
     typealias EffectMapping<S: Scheduler> = Harvester<Input, State>.EffectMapping<World<S>, EffectQueue, Never>
 
-    typealias Effect<S: Scheduler> = Harvest.Effect<World<S>, Input, EffectQueue, Never>
+    typealias Effect = Harvest.Effect<Input, EffectQueue, Never>
 
     typealias EffectQueue = CommonEffectQueue
 

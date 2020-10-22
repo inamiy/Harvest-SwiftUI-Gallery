@@ -79,7 +79,7 @@ extension Root
     /// When navigating to example, cancel its previous running effects.
     private static func previousEffectCancelMapping<S: Scheduler>() -> EffectMapping<S>
     {
-        .makeInout { input, state in
+        .makeInout { input, state, world in
             switch input {
             case let .changeCurrent(current):
                 state.current = current

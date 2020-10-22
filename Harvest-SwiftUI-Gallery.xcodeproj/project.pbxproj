@@ -100,8 +100,6 @@
 		1F58869C2354A3310052A690 /* TodoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoView.swift; sourceTree = "<group>"; };
 		1F58869D2354A3310052A690 /* Todo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
 		1F58869E2354A3310052A690 /* TodoExample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoExample.swift; sourceTree = "<group>"; };
-		1F5BB6362373D2840055AD5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1F5BB63A2373D2A00055AD5E /* GameOfLife */ = {isa = PBXFileReference; lastKnownFileType = folder; path = GameOfLife; sourceTree = "<group>"; };
 		1F5F9B53237A370E00D10A4B /* GameOfLife.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GameOfLife.xcodeproj; path = GameOfLife/GameOfLife.xcodeproj; sourceTree = "<group>"; };
 		1F63A0A3235B67C8006B4F83 /* Combine+DelaySubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Combine+DelaySubscription.swift"; sourceTree = "<group>"; };
 		1F63A0A5235B68EC006B4F83 /* SwiftUI+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwiftUI+Helper.swift"; sourceTree = "<group>"; };
@@ -184,15 +182,6 @@
 			path = Todo;
 			sourceTree = "<group>";
 		};
-		1F5BB6352373D2840055AD5E /* GameOfLife */ = {
-			isa = PBXGroup;
-			children = (
-				1F5BB63A2373D2A00055AD5E /* GameOfLife */,
-				1F5BB6362373D2840055AD5E /* Info.plist */,
-			);
-			path = GameOfLife;
-			sourceTree = "<group>";
-		};
 		1F5F97DA237A370800D10A4B /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
@@ -265,7 +254,6 @@
 			children = (
 				1F5F97DA237A370800D10A4B /* Vendor */,
 				1FD96F8922E00A56005DBB61 /* Harvest-SwiftUI-Gallery */,
-				1F5BB6352373D2840055AD5E /* GameOfLife */,
 				1FD96F8822E00A56005DBB61 /* Products */,
 				1FD96FA322E00AF2005DBB61 /* Frameworks */,
 			);

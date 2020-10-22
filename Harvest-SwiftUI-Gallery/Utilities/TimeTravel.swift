@@ -68,8 +68,8 @@ extension TimeTravel
     static func effectMapping<InnerWorld, InnerInput, InnerState, Queue: EffectQueueProtocol, ID, S: Scheduler>()
         -> Harvester<Input<InnerInput>, State<InnerState>>.EffectMapping<World<InnerWorld, S>, Queue, ID>
     {
-        func tryTimeTravel(state: inout State<InnerState>, newIndex: Int)
-            -> Effect<World<InnerWorld, S>, Input<InnerInput>, Queue, ID>?
+        func tryTimeTravel(state: inout State<InnerState>, newIndex: Int, world: World<InnerWorld, S>)
+            -> Effect<Input<InnerInput>, Queue, ID>?
         {
             guard !state.histories.isEmpty && newIndex >= 0 && newIndex < state.histories.count else {
                 return nil
@@ -83,25 +83,24 @@ extension TimeTravel
             state.isTimeTravelling = true
 
             // Workaround effect for changing to `isTimeTravelling = false` after delay.
-            return Effect { world in
-                Just(Input._didTimeTravel)
-                    .delay(for: world.didTimeTravelDelay, scheduler: world.scheduler)
-            }
+            return Just(Input._didTimeTravel)
+                .delay(for: world.didTimeTravelDelay, scheduler: world.scheduler)
+                .toEffect()
         }
 
-        return .makeInout { input, state in
+        return .makeInout { input, state, world in
             switch input {
             case let .timeTravelSlider(sliderValue):
                 guard sliderValue >= 0 else { return nil }
 
                 let newIndex = Int(sliderValue)
-                return tryTimeTravel(state: &state, newIndex: newIndex)
+                return tryTimeTravel(state: &state, newIndex: newIndex, world: world)
 
             case let .timeTravelStepper(diff):
                 guard diff != 0 else { return nil }
 
                 let newIndex = state.timeTravellingIndex + diff
-                return tryTimeTravel(state: &state, newIndex: newIndex)
+                return tryTimeTravel(state: &state, newIndex: newIndex, world: world)
 
             case ._didTimeTravel:
                 state.isTimeTravelling = false
