@@ -14,35 +14,55 @@ struct RootView: View
     {
         return VStack {
             NavigationView {
-                List(allExamples, id: \.exampleTitle) { example in
-                    NavigationLink(
-                        destination: example.exampleView(store: self.store)
-                            .navigationBarTitle("\(example.exampleTitle)", displayMode: .inline),
-                        isActive: self.store.current
-                            .stateBinding(onChange: Root.Input.changeCurrent)
-                            .transform(
-                                get: { $0?.example.exampleTitle == example.exampleTitle },
-                                set: { _, isPresenting in
-                                    isPresenting ? example.exampleInitialState : nil
-                                }
-                            )
-                            // Workaround for SwiftUI's duplicated `isPresenting = false` calls per 1 dismissal.
-                            .removeDuplictates()
-                    ) {
-                        HStack(alignment: .firstTextBaseline) {
-                            example.exampleIcon
-                                .frame(width: 44)
-                            Text(example.exampleTitle)
-                        }
-                        .font(.body)
-                        .padding(5)
-                    }
+                //
+                // Comment-Out:
+                // As of Xcode 12.3, `List` or `ForEach` iteration here will cause
+                // `NavigationLink`'s destination view not get updated when its state changes
+                // for some reason...
+                //
+//                List(allExamples, id: \.exampleTitle) { example in
+//                    navigationLink(example: example)
+//                }
+
+                // To workaround this, create `NavigationLink` one by one. Doh.
+                List {
+                    navigationLink(example: allExamples[0])
+                    navigationLink(example: allExamples[1])
+                    navigationLink(example: allExamples[2])
+                    navigationLink(example: allExamples[3])
+                    navigationLink(example: allExamples[4])
+                    navigationLink(example: allExamples[5])
+                    navigationLink(example: allExamples[6])
                 }
                 .navigationBarTitle(Text("🌾 Harvest Gallery 🖼️"), displayMode: .large)
             }
-            // Workaround for macOS Catalyst.
-            // Related: https://twitter.com/paulcolton/status/1251162315291934720
-            .navigationViewStyle(StackNavigationViewStyle())
+        }
+    }
+
+    private func navigationLink(example: Example) -> some View
+    {
+        NavigationLink(
+            destination: example.exampleView(store: self.store)
+                .navigationBarTitle(
+                    "\(example.exampleTitle)",
+                    displayMode: .inline
+                ),
+            isActive: self.store.current
+                .stateBinding(onChange: Root.Input.changeCurrent)
+                .transform(
+                    get: { $0?.example.exampleTitle == example.exampleTitle },
+                    set: { _, isPresenting in
+                        isPresenting ? example.exampleInitialState : nil
+                    }
+                )
+        ) {
+            HStack(alignment: .firstTextBaseline) {
+                example.exampleIcon
+                    .frame(width: 44)
+                Text(example.exampleTitle)
+            }
+            .font(.body)
+            .padding(5)
         }
     }
 }
