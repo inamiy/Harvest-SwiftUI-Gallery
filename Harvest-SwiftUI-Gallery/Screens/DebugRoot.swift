@@ -16,6 +16,7 @@ extension DebugRoot
     struct State
     {
         var timeTravel: TimeTravel.State<Root.State>
+        let usesTimeTravel: Bool
 
         /// For debugging purpose.
         var isDebug: Bool = false
@@ -25,9 +26,10 @@ extension DebugRoot
             }
         }
 
-        init(_ state: Root.State)
+        init(inner state: Root.State, usesTimeTravel: Bool)
         {
             self.timeTravel = .init(inner: state)
+            self.usesTimeTravel = usesTimeTravel
         }
     }
 

@@ -20,7 +20,7 @@ struct DebugRootView: View
                 .contramapInput { DebugRoot.Input.timeTravel(.inner($0)) }
         )
 
-        return If(self.usesTimeTravel) {
+        return If(self.store.state.usesTimeTravel) {
             VStack {
                 rootView
                 Divider()
@@ -98,7 +98,7 @@ struct DebugRootView_Previews: PreviewProvider
         return Group {
             DebugRootView(
                 store: .init(
-                    state: .constant(DebugRoot.State(Root.State())),
+                    state: .constant(DebugRoot.State(inner: Root.State(), usesTimeTravel: true)),
                     send: { _ in }
                 )
             )

@@ -17,13 +17,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate
             let window = UIWindow(windowScene: windowScene)
 
             let store = Store<DebugRoot.Input, DebugRoot.State>(
-                state: DebugRoot.State(Root.State(current: nil)),
+                state: DebugRoot.State(inner: Root.State(current: nil), usesTimeTravel: usesTimeTravel),
                 mapping: DebugRoot.effectMapping(usesTimeTravel: usesTimeTravel),
                 world: makeRealWorld()
             )
 
             window.rootViewController = UIHostingController(
-                rootView: AppView(store: store, usesTimeTravel: usesTimeTravel)
+                rootView: AppView(store: store)
             )
 
             self.window = window
