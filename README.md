@@ -1,3 +1,5 @@
+## NOTE: This repository has been discontinued in favor of [Actomaton-Gallery](https://github.com/inamiy/Actomaton-Gallery).
+
 # 🖼 Harvest-SwiftUI-Gallery
 
 [![Xcode 11.1](https://img.shields.io/badge/xcode-11.1-blue.svg?style=flat)](https://developer.apple.com/download/release/) [![Swift 5.1](https://img.shields.io/badge/swift-5.1-orange.svg?style=flat)](https://swift.org/download/)
